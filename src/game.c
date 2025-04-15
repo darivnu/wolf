@@ -12,6 +12,7 @@ static void constructor(void *ptr, va_list *args)
     GameClass_t *self = (GameClass_t *) ptr;
 
     self->ray = new_class(Ray, self);
+    self->player = new_class(Player, self);
 }
 
 static void destructor(void *ptr)
@@ -19,6 +20,7 @@ static void destructor(void *ptr)
     GameClass_t *self = (GameClass_t *) ptr;
 
     destroy_class(self->ray);
+    destroy_class(self->player);
 }
 
 const GameClass_t game_init = {
