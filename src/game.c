@@ -15,6 +15,7 @@ static void constructor(void *ptr, va_list *args)
     self->player = new_class(Player, self);
     self->map = new_class(Map, self);
     self->render = new_class(Render, self);
+    self->input = new_class(Input, self);
 }
 
 static void destructor(void *ptr)
@@ -25,6 +26,7 @@ static void destructor(void *ptr)
     destroy_class(self->player);
     destroy_class(self->map);
     destroy_class(self->render);
+    destroy_class(self->input);
 }
 
 const GameClass_t game_init = {

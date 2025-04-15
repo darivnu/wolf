@@ -11,6 +11,7 @@
 #include "player.h"
 #include "map.h"
 #include "render.h"
+#include "input.h"
 
 #ifndef INCLUDED_GAME_H
     #define INCLUDED_GAME_H
@@ -26,6 +27,7 @@
         PlayerClass_t *player;
         MapClass_t *map;
         RenderClass_t *render;
+        InputClass_t *input;
         /* ---------------*/
         int screenX;
         int screenWidth;
@@ -37,5 +39,6 @@ extern const class_t *Ray;
 extern const class_t *Player;
 extern const class_t *Map;
 extern const class_t *Render;
+extern const class_t *Input;
 
 #endif
