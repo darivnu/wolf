@@ -26,7 +26,10 @@
         int side;
         double perpWallDist;
         /* class methods */
+        void (*castRay)(RayClass_t *);
     } RayClass_t;
+
+    void castRay(RayClass_t *);
 
 
 

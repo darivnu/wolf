@@ -2,25 +2,24 @@
 ** EPITECH PROJECT, 2025
 ** wolf
 ** File description:
-** ray
+** map
 */
 
 #include "game.h"
 
 static void constructor(void *ptr, va_list *args)
 {
-    RayClass_t *self = (RayClass_t *) ptr;
+    MapClass_t *self = (MapClass_t *) ptr;
 
     self->parent = va_arg(*args, GameClass_t *);
 }
 
-const RayClass_t ray_init = {
+const MapClass_t map_init = {
     {
-        ._size = sizeof ray_init,
-        ._name = "RayClass_t",
+        ._size = sizeof map_init,
+        ._name = "MapClass_t",
         ._constructor = constructor,
     },
-    .castRay = castRay,
 };
 
-const class_t *Ray = (const class_t *) &ray_init;
+const class_t *Map = (class_t *) &map_init;
