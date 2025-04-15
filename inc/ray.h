@@ -25,11 +25,17 @@
         int stepX, stepY;
         int side;
         double perpWallDist;
+        double cameraX;
+        int hit;
         /* class methods */
-        void (*castRay)(RayClass_t *);
+        void (*ray_cast)(RayClass_t *);
+        void (*calc_step)(RayClass_t *);
+        void (*dda_algo)(RayClass_t *);
     } RayClass_t;
 
-    void castRay(RayClass_t *);
+    void ray_cast(RayClass_t *);
+    void calc_step(RayClass_t *);
+    void dda_algo(RayClass_t *);
 
 
 

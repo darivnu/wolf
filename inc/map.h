@@ -18,6 +18,9 @@
         class_t meta;
         /* class members */
         GameClass_t *parent;
+        int width;
+        int height;
+        int **data;
         /* class methods */
     } MapClass_t;
 

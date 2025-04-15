@@ -5,9 +5,15 @@
 ** common
 */
 
+#include <stdlib.h>
+#include <math.h>
+#include <SFML/Graphics.h>
+#include <SFML/System.h>
+
 #ifndef INCLUDED_COMMON_H
     #define INCLUDED_COMMON_H
     #define DEFAULT_FOV 0.66
+    #define INFINITE 1e30
 
 
 
