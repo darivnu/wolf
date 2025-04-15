@@ -10,6 +10,7 @@
 #include "ray.h"
 #include "player.h"
 #include "map.h"
+#include "render.h"
 
 #ifndef INCLUDED_GAME_H
     #define INCLUDED_GAME_H
@@ -24,6 +25,7 @@
         RayClass_t *ray;
         PlayerClass_t *player;
         MapClass_t *map;
+        RenderClass_t *render;
         /* ---------------*/
         int screenX;
         int screenWidth;
@@ -34,5 +36,6 @@ extern const class_t *Game;
 extern const class_t *Ray;
 extern const class_t *Player;
 extern const class_t *Map;
+extern const class_t *Render;
 
 #endif
