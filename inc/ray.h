@@ -18,6 +18,13 @@
         class_t meta;
         /* class members */
         GameClass_t *parent;
+        double rayDirX, rayDirY;
+        double sideDistX, sideDistY;
+        double deltaDistX, deltaDistY;
+        int mapX, mapY;
+        int stepX, stepY;
+        int side;
+        double perpWallDist;
         /* class methods */
     } RayClass_t;
 

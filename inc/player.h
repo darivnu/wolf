@@ -17,6 +17,13 @@
         class_t meta;
         /* class members*/
         GameClass_t *parent;
+        // Player ray logic members
+        double posX, posY;
+        double dirX, dirY;
+        double planeX, planeY;
+        double moveSpeed;
+        double rotSpeed;
+        //
         /* class methods */
     } PlayerClass_t;
 

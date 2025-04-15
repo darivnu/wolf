@@ -19,8 +19,12 @@
         /* class metadata*/
         class_t meta;
         /* class members */
+        /* ----Classes----*/
         RayClass_t *ray;
         PlayerClass_t *player;
+        /* ---------------*/
+        int screenX;
+        int screenWidth;
         /* class methods */
     } GameClass_t;
 
