@@ -25,14 +25,17 @@ typedef struct player_aux {
     double rotSpeed;
     //
     double newPosX, newPosY;
+    double oldDirX, oldDirY;
     double newMoveSpeed;
     double newRotSpeed;
     /* class methods */
     void (*init_player)(PlayerClass_t *);
     void (*player_move)(PlayerClass_t *);
+    void (*player_rotate)(PlayerClass_t *);
 } PlayerClass_t;
 
 void init_player(PlayerClass_t *);
 void player_move(PlayerClass_t *);
+void player_rotate(PlayerClass_t*);
 
 #endif

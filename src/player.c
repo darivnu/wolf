@@ -43,6 +43,18 @@ void player_move(PlayerClass_t *self)
     }
 }
 
+void player_rotate(PlayerClass_t *self)
+{
+    double rotSpeed = self->rotSpeed * self->parent->deltaTime * self->parent->input->rotate;
+    double oldDirX = self->dirX;
+    double oldPlaneX = self->planeX;
+
+    self->dirX = self->dirX * cos(rotSpeed) - self->dirY * sin(rotSpeed);
+    self->dirY = oldDirX * sin(rotSpeed) + self->dirY * cos(rotSpeed);
+    self->planeX = self->planeX * cos(rotSpeed) - self->planeY * sin(rotSpeed);
+    self->planeY = oldPlaneX * sin(rotSpeed) + self->planeY * cos(rotSpeed);
+}
+
 const PlayerClass_t player_init = {
     {
         ._size = sizeof player_init,
@@ -51,6 +63,7 @@ const PlayerClass_t player_init = {
     },
     .init_player = init_player,
     .player_move = player_move,
+    .player_rotate = player_rotate,
 };
 
 const class_t *Player = (class_t *) &player_init;
