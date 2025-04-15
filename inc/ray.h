@@ -21,7 +21,6 @@
         /* class methods */
     } RayClass_t;
 
-extern const class_t *Ray;
 
 
 #endif

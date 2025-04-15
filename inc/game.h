@@ -23,5 +23,7 @@
     } GameClass_t;
 
 extern const class_t *Game;
+extern const class_t *Ray;
+
 
 #endif
