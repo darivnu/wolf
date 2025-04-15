@@ -14,6 +14,8 @@
     #define INCLUDED_COMMON_H
     #define DEFAULT_FOV 0.66
     #define INFINITE 1e30
+    #define WALL 1
+    #define NOWALL 0
 
 
 

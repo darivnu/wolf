@@ -22,7 +22,11 @@
         int height;
         int **data;
         /* class methods */
+    void (*map_create)(MapClass_t *, int, int);
+    int (*map_get_cell)(MapClass_t *, int, int);
     } MapClass_t;
 
+void map_create(MapClass_t *, int, int);
+int map_get_cell(MapClass_t *, int, int);
 
 #endif
