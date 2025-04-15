@@ -9,9 +9,9 @@
 NAME = libmy
 BIN = wolf3d
 CC = gcc
-CFLAGS = -Wall -Werror -ggdb -Iinc -lcsfml-window -lcsfml-graphics \
--lcsfml-system -lcsfml-audio
-REPLACE = -L./ -lmy
+CFLAGS = -Wall -Werror -ggdb -Iinc
+REPLACE = -L./ -lmy -lcsfml-window -lcsfml-graphics -lcsfml-system \
+-lcsfml-audio -lm
 PROJECT = wolf3d
 VERSION = 1.0
 

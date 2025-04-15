@@ -10,6 +10,8 @@
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
 #include <SFML/Graphics/Types.h>
+#include <SFML/Config.h>
+#include <SFML/Window.h>
 
 
 #ifndef INCLUDED_COMMON_H
