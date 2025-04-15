@@ -2,26 +2,26 @@
 ** EPITECH PROJECT, 2025
 ** wolf
 ** File description:
-** game
+** ray
 */
 
-#include "common.h"
 #include "oop.h"
-#include "ray.h"
 
-#ifndef INCLUDED_GAME_H
-    #define INCLUDED_GAME_H
+#ifndef INCLUDED_RAY_H
+    #define INCLUDED_RAY_H
 
     typedef struct game_aux GameClass_t;
+    typedef struct ray_aux RayClass_t;
 
-    typedef struct game_aux {
+    typedef struct ray_aux {
         /* class metadata*/
         class_t meta;
         /* class members */
-        RayClass_t *ray;
+        GameClass_t *parent;
         /* class methods */
-    } GameClass_t;
+    } RayClass_t;
 
-extern const class_t *Game;
+extern const class_t *Ray;
+
 
 #endif
