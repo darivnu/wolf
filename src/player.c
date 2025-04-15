@@ -38,7 +38,7 @@ void player_move(PlayerClass_t *self)
     if (self->parent->map->map_get_cell(self->parent->map, (int)self->newPosX, (int)self->posY) == 0) {
         self->posX = self->newPosX;
     }
-    if (self->parent->map->map_get_cell(self->parent->map, self->posX, self->newPosY) == 0) {
+    if (self->parent->map->map_get_cell(self->parent->map, (int)self->posX, (int)self->newPosY) == 0) {
         self->posY = self->newPosY;
     }
 }
