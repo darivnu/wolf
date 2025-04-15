@@ -9,6 +9,8 @@
 #include <math.h>
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
+#include <SFML/Graphics/Types.h>
+
 
 #ifndef INCLUDED_COMMON_H
     #define INCLUDED_COMMON_H

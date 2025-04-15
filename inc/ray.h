@@ -29,16 +29,18 @@
         int hit;
         int wallType;
         /* class methods */
-        void (*ray_cast)(RayClass_t *);
+        void (*ray_cast)(RayClass_t *, int);
         void (*calc_step)(RayClass_t *);
         void (*dda_algo)(RayClass_t *);
         void (*calc_perp_dist)(RayClass_t *);
+        void (*ray_destroy)(RayClass_t *);
     } RayClass_t;
 
-    void ray_cast(RayClass_t *);
+    void ray_cast(RayClass_t *, int);
     void calc_step(RayClass_t *);
     void dda_algo(RayClass_t *);
     void calc_perp_dist(RayClass_t *);
+    void ray_destroy(RayClass_t *);
 
 
 

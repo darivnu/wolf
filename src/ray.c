@@ -14,10 +14,10 @@ static void constructor(void *ptr, va_list *args)
     self->parent = va_arg(*args, GameClass_t *);
 }
 
-void ray_cast(RayClass_t *self)
+void ray_cast(RayClass_t *self, int x)
 {
     self->cameraX =
-        2.0 * self->parent->screenX / (double) self->parent->screenWidth - 1.0;
+        2.0 * x / (double) self->parent->screenWidth - 1.0;
     self->rayDirX = self->parent->player->dirX
         + self->parent->player->planeX * self->cameraX;
     self->rayDirY = self->parent->player->dirY
@@ -90,6 +90,10 @@ void calc_perp_dist(RayClass_t *self)
     }
 }
 
+void ray_destroy(RayClass_t *self)
+{
+}
+
 const RayClass_t ray_init = {
     {
         ._size = sizeof ray_init,
@@ -100,6 +104,7 @@ const RayClass_t ray_init = {
     .calc_step = calc_step,
     .dda_algo = dda_algo,
     .calc_perp_dist = calc_perp_dist,
+    .ray_destroy = ray_destroy,
 };
 
 const class_t *Ray = (const class_t *) &ray_init;
