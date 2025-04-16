@@ -24,9 +24,9 @@ int init_game_components(GameClass_t *game)
     game->render->zBuffer = malloc(sizeof(double) * game->screenWidth);
     if (!game->render->zBuffer)
         return 84;
-    game->map->map_create(game->map, 15, 15);
-    game->player->posX = 10.0;
-    game->player->posY = 10.0;
+    game->map->map_create(game->map, 10, 10);
+    game->player->posX = 5.0;
+    game->player->posY = 5.0;
     game->player->dirX = 1.0;
     game->player->dirY = 0.0;
     game->player->init_player(game->player);

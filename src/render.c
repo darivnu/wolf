@@ -23,16 +23,10 @@ void render_walls(RenderClass_t *self)
 {
     for (int x = 0; x < self->width; x++) {
         self->parent->ray->ray_cast(self->parent->ray, x);
-        self->lineHeight = (int)(self->height / self->parent->ray->perpWallDist);
-        self->drawStart = -self->lineHeight / 2 + self->height / 2;
-        if (self->drawStart < 0)
-            self->drawStart = 0;
-        self->drawEnd = self->lineHeight / 2 + self->height / 2;
-        if (self->drawEnd >= self->height)
-            self->drawEnd = self->height - 1;
         self->zBuffer[x] = self->parent->ray->perpWallDist;
-        self->set_texture(self);
-        self->draw_lines(self, x);
+        
+        // Draw the textured wall
+        self->parent->texture->draw_textured_wall(self->parent->texture, x);
     }
 }
 

@@ -5,6 +5,7 @@
 ** texture
 */
 
+#include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
 #include "oop.h"
 
@@ -22,10 +23,16 @@ typedef struct texture_aux {
     sfTexture **wallTextures;
     sfSprite *wallSprite;
     int textureSize;
+    int texNum;
+    sfIntRect textureRect;
+    float wallHeight;
+    float posY;
     /* class methods */
     void (*load_textures)(TextureClass_t *);
+    void (*draw_textured_wall)(TextureClass_t *, int);
 } TextureClass_t;
 
 void load_textures(TextureClass_t *);
+void draw_textured_wall(TextureClass_t *, int);
 
 #endif
