@@ -22,5 +22,6 @@
     #define INFINITE          1e30
     #define WALL              1
     #define NOWALL            0
+    #define NUM_TEXTURES 1
 
 #endif

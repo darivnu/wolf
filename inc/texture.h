@@ -5,6 +5,7 @@
 ** texture
 */
 
+#include <SFML/Graphics/Types.h>
 #include "oop.h"
 
 #ifndef INCLUDED_TEXTURE_H
@@ -18,7 +19,13 @@ typedef struct texture_aux {
     class_t meta;
     /* class members */
     GameClass_t *parent;
+    sfTexture **wallTextures;
+    sfSprite *wallSprite;
+    int textureSize;
     /* class methods */
+    void (*load_textures)(TextureClass_t *);
 } TextureClass_t;
+
+void load_textures(TextureClass_t *);
 
 #endif

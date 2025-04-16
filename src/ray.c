@@ -31,6 +31,7 @@ void ray_cast(RayClass_t *self, int x)
     self->calc_step(self);
     self->dda_algo(self);
     self->calc_perp_dist(self);
+    self->set_walls(self);
 }
 
 void calc_step(RayClass_t *self)
@@ -91,8 +92,18 @@ void calc_perp_dist(RayClass_t *self)
     }
 }
 
-void ray_destroy(RayClass_t *self)
+void set_walls(RayClass_t *self)
 {
+    if (self->side == 0) {
+        self->wallX = self->parent->player->posY + self->perpWallDist * self->rayDirY;
+    } else {
+        self->wallX = self->parent->player->posX + self->perpWallDist * self->rayDirX;
+    }
+    self->wallX -= floor(self->wallX);
+    self->texX = (int)(self->wallX * self->parent->texture->textureSize);
+    if ((self->side == 0 && self->rayDirX > 0) || (self->side == 1 && self->rayDirY < 0)) {
+        self->texX = self->parent->texture->textureSize - self->texX - 1;
+    }
 }
 
 const RayClass_t ray_init = {
@@ -105,7 +116,7 @@ const RayClass_t ray_init = {
     .calc_step = calc_step,
     .dda_algo = dda_algo,
     .calc_perp_dist = calc_perp_dist,
-    .ray_destroy = ray_destroy,
+    .set_walls = set_walls,
 };
 
 const class_t *Ray = (const class_t *) &ray_init;
