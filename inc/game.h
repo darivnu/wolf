@@ -5,6 +5,7 @@
 ** game
 */
 
+#include <SFML/System/Types.h>
 #include "common.h"
 #include "input.h"
 #include "map.h"
@@ -31,9 +32,23 @@ typedef struct game_aux {
     /* --------------- */
     int screenX;
     int screenWidth;
+    int screenHeight;
+    sfClock *clock;
     float deltaTime;
     /* class methods */
+    int (*init_game_components)(GameClass_t *game);
+    void (*handle_events)(GameClass_t *game);
+    void (*update_game)(GameClass_t *game);
+    void (*render_game)(GameClass_t *game);
+
+
+
 } GameClass_t;
+
+int init_game_components(GameClass_t *);
+void handle_events(GameClass_t *game);
+void update_game(GameClass_t *game);
+void render_game(GameClass_t *game);
 
 extern const class_t *Game;
 extern const class_t *Ray;

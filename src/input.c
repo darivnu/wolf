@@ -25,9 +25,9 @@ void get_input(InputClass_t *self)
         if (sfKeyboard_isKeyPressed(sfKeyD))
             self->strafe = 1.0;
         if (sfKeyboard_isKeyPressed(sfKeyLeft))
-            self->rotate = 1.0;
-        if (sfKeyboard_isKeyPressed(sfKeyRight))
             self->rotate = -1.0;
+        if (sfKeyboard_isKeyPressed(sfKeyRight))
+            self->rotate = 1.0;
 }
 
 const InputClass_t input_init = {

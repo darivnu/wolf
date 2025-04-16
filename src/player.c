@@ -28,12 +28,16 @@ void player_move(PlayerClass_t *self)
     self->newPosX = self->posX;
     self->newPosY = self->posY;
     if (self->parent->input->forward != 0) {
-        self->newPosX = self->posX + self->planeX * self->moveSpeed * self->parent->input->forward;
-        self->newPosY = self->posY + self->planeY * self->moveSpeed * self->parent->input->forward;
+        if (self->parent->input->forward != 0) {
+            self->newPosX = self->posX + self->dirX * self->newMoveSpeed * self->parent->input->forward;
+            self->newPosY = self->posY + self->dirY * self->newMoveSpeed * self->parent->input->forward;
+        }
     }
     if (self->parent->input->strafe != 0) {
-        self->newPosX = self->newPosX + self->planeX * self->moveSpeed * self->parent->input->strafe;
-        self->newPosY = self->posY + self->planeY * self->moveSpeed * self->parent->input->strafe;
+        if (self->parent->input->strafe != 0) {
+            self->newPosX = self->newPosX + self->planeX * self->newMoveSpeed * self->parent->input->strafe;
+            self->newPosY = self->newPosY + self->planeY * self->newMoveSpeed * self->parent->input->strafe;
+        }
     }
     if (self->parent->map->map_get_cell(self->parent->map, (int)self->newPosX, (int)self->posY) == 0) {
         self->posX = self->newPosX;

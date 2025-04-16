@@ -57,6 +57,7 @@ void calc_step(RayClass_t *self)
 
 void dda_algo(RayClass_t *self)
 {
+    self->hit = 0;
     while (self->hit == 0) {
         if (self->sideDistX < self->sideDistY) {
             self->sideDistX += self->deltaDistX;

@@ -12,11 +12,12 @@
 #include <SFML/Window.h>
 #include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #ifndef INCLUDED_COMMON_H
     #define INCLUDED_COMMON_H
     #define DEFAULT_FOV       0.66
-    #define DEFAULT_SPEED     5.0
+    #define DEFAULT_SPEED     4.0
     #define DEFAULT_ROT_SPEED 3.0
     #define INFINITE          1e30
     #define WALL              1

@@ -36,6 +36,10 @@ const GameClass_t game_init = {
         ._constructor = constructor,
         ._destructor = destructor,
     },
+    .init_game_components = init_game_components,
+    .handle_events = handle_events,
+    .update_game = update_game,
+    .render_game = render_game,
 };
 
 const class_t *Game = (const class_t *) &game_init;
