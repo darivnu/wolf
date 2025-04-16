@@ -36,6 +36,6 @@ typedef struct player_aux {
 
 void init_player(PlayerClass_t *);
 void player_move(PlayerClass_t *);
-void player_rotate(PlayerClass_t*);
+void player_rotate(PlayerClass_t *);
 
 #endif

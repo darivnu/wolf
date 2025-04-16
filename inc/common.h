@@ -11,8 +11,8 @@
 #include <SFML/System.h>
 #include <SFML/Window.h>
 #include <math.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #ifndef INCLUDED_COMMON_H
     #define INCLUDED_COMMON_H
