@@ -24,8 +24,6 @@ void render_walls(RenderClass_t *self)
     for (int x = 0; x < self->width; x++) {
         self->parent->ray->ray_cast(self->parent->ray, x);
         self->zBuffer[x] = self->parent->ray->perpWallDist;
-        
-        // Draw the textured wall
         self->parent->texture->draw_textured_wall(self->parent->texture, x);
     }
 }

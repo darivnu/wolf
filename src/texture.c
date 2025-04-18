@@ -5,6 +5,7 @@
 ** texture
 */
 
+#include <SFML/Graphics/Texture.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
 #include "game.h"
@@ -21,8 +22,9 @@ void load_textures(TextureClass_t *self)
 {
     self->wallTextures = malloc(sizeof(sfTexture *) * NUM_TEXTURES);
     self->wallTextures[0] =
-        sfTexture_createFromFile("assets/textures/str_metalflr1.png", NULL);
-
+        sfTexture_createFromFile("assets/textures/str_stonebrk1.png", NULL);
+    self->wallTextures[1] = sfTexture_createFromFile("assets/textures/str_metalflr1.png", NULL);
+    self->wallTextures[2] = sfTexture_createFromFile("assets/textures/str_metalpan8.png", NULL);
     self->wallSprite = sfSprite_create();
     self->textureSize = 256;
 }
