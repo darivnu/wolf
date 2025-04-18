@@ -24,7 +24,7 @@ void load_textures(TextureClass_t *self)
         sfTexture_createFromFile("assets/textures/str_metalflr1.png", NULL);
 
     self->wallSprite = sfSprite_create();
-    self->textureSize = 64;
+    self->textureSize = 256;
 }
 
 void draw_textured_wall(TextureClass_t *self, int x)
@@ -41,7 +41,7 @@ void draw_textured_wall(TextureClass_t *self, int x)
         self->parent->render->height / self->parent->ray->perpWallDist;
     sfSprite_setScale(self->wallSprite,
         (sfVector2f){1.0f, self->wallHeight / self->textureSize});
-    self->posY = (self->wallHeight - self->wallHeight) / 2.0f;
+    self->posY = (self->parent->render->height - self->wallHeight) / 2.0f;
     sfSprite_setPosition(self->wallSprite, (sfVector2f){x, self->posY});
     sfRenderWindow_drawSprite(
         self->parent->render->window, self->wallSprite, NULL);
