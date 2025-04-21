@@ -31,11 +31,13 @@ typedef struct player_aux {
     /* class methods */
     void (*init_player)(PlayerClass_t *);
     void (*player_move)(PlayerClass_t *);
+    void (*check_move_col)(PlayerClass_t *);
     void (*player_rotate)(PlayerClass_t *);
 } PlayerClass_t;
 
 void init_player(PlayerClass_t *);
 void player_move(PlayerClass_t *);
 void player_rotate(PlayerClass_t *);
+void check_move_col(PlayerClass_t *);
 
 #endif

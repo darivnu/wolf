@@ -54,3 +54,4 @@ dkms.conf
 #Custom configuration
 coding-style-reports.log
 wolf3d
+report.txt
