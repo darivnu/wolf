@@ -28,24 +28,38 @@ void player_move(PlayerClass_t *self)
     self->newPosX = self->posX;
     self->newPosY = self->posY;
     if (self->parent->input->forward != 0) {
-        self->newPosX = self->posX + self->dirX * self->newMoveSpeed * self->parent->input->forward;
-        self->newPosY = self->posY + self->dirY * self->newMoveSpeed * self->parent->input->forward;
+        self->newPosX = self->posX
+            + self->dirX * self->newMoveSpeed * self->parent->input->forward;
+        self->newPosY = self->posY
+            + self->dirY * self->newMoveSpeed * self->parent->input->forward;
     }
     if (self->parent->input->strafe != 0) {
-        self->newPosX = self->newPosX + self->planeX * self->newMoveSpeed * self->parent->input->strafe;
-        self->newPosY = self->newPosY + self->planeY * self->newMoveSpeed * self->parent->input->strafe;
+        self->newPosX = self->newPosX
+            + self->planeX * self->newMoveSpeed * self->parent->input->strafe;
+        self->newPosY = self->newPosY
+            + self->planeY * self->newMoveSpeed * self->parent->input->strafe;
     }
-    if (self->parent->map->map_get_cell(self->parent->map, (int)self->newPosX, (int)self->posY) == 0) {
+    self->check_move_col(self);
+}
+
+void check_move_col(PlayerClass_t *self)
+{
+    if (self->parent->map->map_get_cell(
+            self->parent->map, (int) self->newPosX, (int) self->posY)
+        == 0) {
         self->posX = self->newPosX;
     }
-    if (self->parent->map->map_get_cell(self->parent->map, (int)self->posX, (int)self->newPosY) == 0) {
+    if (self->parent->map->map_get_cell(
+            self->parent->map, (int) self->posX, (int) self->newPosY)
+        == 0) {
         self->posY = self->newPosY;
     }
 }
 
 void player_rotate(PlayerClass_t *self)
 {
-    double rotSpeed = self->rotSpeed * self->parent->deltaTime * self->parent->input->rotate;
+    double rotSpeed =
+        self->rotSpeed * self->parent->deltaTime * self->parent->input->rotate;
     double oldDirX = self->dirX;
     double oldPlaneX = self->planeX;
 
@@ -63,6 +77,7 @@ const PlayerClass_t player_init = {
     },
     .init_player = init_player,
     .player_move = player_move,
+    .check_move_col = check_move_col,
     .player_rotate = player_rotate,
 };
 

@@ -16,8 +16,7 @@ static void constructor(void *ptr, va_list *args)
 
 void ray_cast(RayClass_t *self, int x)
 {
-    self->cameraX =
-        2.0 * x / (double) self->parent->screenWidth - 1.0;
+    self->cameraX = 2.0 * x / (double) self->parent->screenWidth - 1.0;
     self->rayDirX = self->parent->player->dirX
         + self->parent->player->planeX * self->cameraX;
     self->rayDirY = self->parent->player->dirY
@@ -95,13 +94,16 @@ void calc_perp_dist(RayClass_t *self)
 void set_walls(RayClass_t *self)
 {
     if (self->side == 0) {
-        self->wallX = self->parent->player->posY + self->perpWallDist * self->rayDirY;
+        self->wallX =
+            self->parent->player->posY + self->perpWallDist * self->rayDirY;
     } else {
-        self->wallX = self->parent->player->posX + self->perpWallDist * self->rayDirX;
+        self->wallX =
+            self->parent->player->posX + self->perpWallDist * self->rayDirX;
     }
     self->wallX -= floor(self->wallX);
-    self->texX = (int)(self->wallX * self->parent->texture->textureSize);
-    if ((self->side == 0 && self->rayDirX > 0) || (self->side == 1 && self->rayDirY < 0)) {
+    self->texX = (int) (self->wallX * self->parent->texture->textureSize);
+    if ((self->side == 0 && self->rayDirX > 0)
+        || (self->side == 1 && self->rayDirY < 0)) {
         self->texX = self->parent->texture->textureSize - self->texX - 1;
     }
 }

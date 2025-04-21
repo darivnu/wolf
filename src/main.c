@@ -64,6 +64,7 @@ void update_game(GameClass_t *game)
 void render_game(GameClass_t *game)
 {
     sfRenderWindow_clear(game->render->window, sfBlack);
+    game->texture->draw_floor_ceiling(game->texture);
     game->render->render_walls(game->render);
     sfRenderWindow_display(game->render->window);
 }

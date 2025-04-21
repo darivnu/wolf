@@ -56,18 +56,6 @@ void draw_textured_wall(TextureClass_t *self, int x)
         self->parent->render->window, self->wallSprite, NULL);
 }
 
-void draw_floor_ceiling(TextureClass_t *self)
-{
-    if (!self->floorCeilingTexture)
-        self->floorCeilingTexture =
-            sfRenderTexture_create(self->parent->render->width,
-                self->parent->render->height, sfFalse);
-    self->image = sfImage_create(self->parent->render->width, self->parent->render->height);
-    for (int y = self->parent->render->height / 2; y < self->parent->render->height; y++) {
-        for (int x = 0; x < self->parent->render->width; x++) {}
-    }
-}
-
 const TextureClass_t texture_init = {
     {
         ._size = sizeof texture_init,
@@ -77,6 +65,11 @@ const TextureClass_t texture_init = {
     .load_textures = load_textures,
     .draw_textured_wall = draw_textured_wall,
     .draw_floor_ceiling = draw_floor_ceiling,
+    .set_fc = set_fc,
+    .set_fc_pixels = set_fc_pixels,
+    .fc_loop = fc_loop,
+    .fc_xloop = fc_xloop,
+    .fc_logic = fc_logic,
 };
 
 const class_t *Texture = (class_t *) &texture_init;
