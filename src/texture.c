@@ -5,6 +5,7 @@
 ** texture
 */
 
+#include <SFML/Config.h>
 #include <SFML/Graphics/Texture.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
@@ -21,10 +22,16 @@ static void constructor(void *ptr, va_list *args)
 void load_textures(TextureClass_t *self)
 {
     self->wallTextures = malloc(sizeof(sfTexture *) * NUM_TEXTURES);
+    self->floorTexture =
+        sfTexture_createFromFile("assets/textures/str_stoneflr1.png", NULL);
+    self->ceilingTexture =
+        sfTexture_createFromFile("assets/textures/str_stonegen1.png", NULL);
     self->wallTextures[0] =
         sfTexture_createFromFile("assets/textures/str_stonebrk1.png", NULL);
-    self->wallTextures[1] = sfTexture_createFromFile("assets/textures/str_metalflr1.png", NULL);
-    self->wallTextures[2] = sfTexture_createFromFile("assets/textures/str_metalpan8.png", NULL);
+    self->wallTextures[1] =
+        sfTexture_createFromFile("assets/textures/str_metalflr1.png", NULL);
+    self->wallTextures[2] =
+        sfTexture_createFromFile("assets/textures/str_metalpan8.png", NULL);
     self->wallSprite = sfSprite_create();
     self->textureSize = 256;
 }
@@ -49,6 +56,18 @@ void draw_textured_wall(TextureClass_t *self, int x)
         self->parent->render->window, self->wallSprite, NULL);
 }
 
+void draw_floor_ceiling(TextureClass_t *self)
+{
+    if (!self->floorCeilingTexture)
+        self->floorCeilingTexture =
+            sfRenderTexture_create(self->parent->render->width,
+                self->parent->render->height, sfFalse);
+    self->image = sfImage_create(self->parent->render->width, self->parent->render->height);
+    for (int y = self->parent->render->height / 2; y < self->parent->render->height; y++) {
+        for (int x = 0; x < self->parent->render->width; x++) {}
+    }
+}
+
 const TextureClass_t texture_init = {
     {
         ._size = sizeof texture_init,
@@ -57,6 +76,7 @@ const TextureClass_t texture_init = {
     },
     .load_textures = load_textures,
     .draw_textured_wall = draw_textured_wall,
+    .draw_floor_ceiling = draw_floor_ceiling,
 };
 
 const class_t *Texture = (class_t *) &texture_init;
