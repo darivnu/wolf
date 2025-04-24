@@ -5,6 +5,7 @@
 ** input
 */
 
+#include <SFML/System/Vector2.h>
 #include "common.h"
 #include "oop.h"
 
@@ -22,10 +23,18 @@ typedef struct input_aux {
     double forward;
     double strafe;
     double rotate;
+    sfVector2i currentMousePos;
+    sfVector2i prevMousePos;
+    int mouseDistance;
+    int mouseThreshold;
     /* class methods */
     void (*get_input)(InputClass_t *);
+    void (*mouse_rot)(InputClass_t *);
+    void (*init_input_defaults)(InputClass_t *);
 } InputClass_t;
 
 void get_input(InputClass_t *);
+void mouse_rot(InputClass_t *);
+void init_input_defaults(InputClass_t *);
 
 #endif
