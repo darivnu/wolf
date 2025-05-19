@@ -14,6 +14,8 @@
 #include "ray.h"
 #include "render.h"
 #include "texture.h"
+#include "animation.h"
+#include "sprite.h"
 
 #ifndef INCLUDED_GAME_H
     #define INCLUDED_GAME_H
@@ -31,6 +33,8 @@ typedef struct game_aux {
     RenderClass_t *render;
     InputClass_t *input;
     TextureClass_t *texture;
+    AnimationClass_t *animation;
+    SpriteClass_t *sprite;
     /* --------------- */
     int screenX;
     int screenWidth;
@@ -50,6 +54,7 @@ void handle_events(GameClass_t *game);
 void update_game(GameClass_t *game);
 void render_game(GameClass_t *game);
 
+
 extern const class_t *Game;
 extern const class_t *Ray;
 extern const class_t *Player;
@@ -57,5 +62,7 @@ extern const class_t *Map;
 extern const class_t *Render;
 extern const class_t *Input;
 extern const class_t *Texture;
+extern const class_t *Animation;
+extern const class_t *Sprite;
 
 #endif

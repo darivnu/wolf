@@ -31,6 +31,7 @@ int init_game_components(GameClass_t *game)
     game->player->dirY = 0.0;
     game->player->init_player(game->player);
     game->clock = sfClock_create();
+
     return 0;
 }
 
@@ -59,6 +60,8 @@ void update_game(GameClass_t *game)
     game->input->get_input(game->input);
     game->player->player_move(game->player);
     game->player->player_rotate(game->player);
+    game->animation->update_animations(game->animation, game->deltaTime);
+    game->sprite->update_sprite(game->sprite, game->deltaTime);
 }
 
 void render_game(GameClass_t *game)
@@ -66,6 +69,7 @@ void render_game(GameClass_t *game)
     sfRenderWindow_clear(game->render->window, sfBlack);
     game->texture->draw_floor_ceiling(game->texture);
     game->render->render_walls(game->render);
+    game->sprite->draw_sprite(game->sprite);
     sfRenderWindow_display(game->render->window);
 }
 

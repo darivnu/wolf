@@ -17,6 +17,8 @@ static void constructor(void *ptr, va_list *args)
     self->render = new_class(Render, self);
     self->input = new_class(Input, self);
     self->texture = new_class(Texture, self);
+    self->animation = new_class(Animation, self);
+    self->sprite = new_class(Sprite, self);
 }
 
 static void destructor(void *ptr)
@@ -29,6 +31,8 @@ static void destructor(void *ptr)
     destroy_class(self->render);
     destroy_class(self->input);
     destroy_class(self->texture);
+    destroy_class(self->animation);
+    destroy_class(self->sprite);
 }
 
 const GameClass_t game_init = {
