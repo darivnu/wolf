@@ -17,6 +17,7 @@
 #include "animation.h"
 #include "sprite.h"
 #include "weapon.h"
+#include "sound.h"
 
 #ifndef INCLUDED_GAME_H
     #define INCLUDED_GAME_H
@@ -37,6 +38,7 @@ typedef struct game_aux {
     AnimationClass_t *animation;
     SpriteClass_t *sprite;
     WeaponClass_t *weapon;
+    SoundClass_t *sound;
 
     SpriteClass_t *weapon_sprite;
     /* --------------- */
@@ -52,6 +54,7 @@ typedef struct game_aux {
     void (*render_game)(GameClass_t *game);
     void (*set_game_basic_components)(GameClass_t *game);
     void (*game_loop)(GameClass_t *game);
+    void (*init_sound)(GameClass_t *game);
 
 } GameClass_t;
 
@@ -61,6 +64,7 @@ void update_game(GameClass_t *game);
 void render_game(GameClass_t *game);
 void set_game_basic_components(GameClass_t *game);
 void game_loop(GameClass_t *game);
+void init_sound(GameClass_t *game);
 
 
 
@@ -74,5 +78,6 @@ extern const class_t *Texture;
 extern const class_t *Animation;
 extern const class_t *Sprite;
 extern const class_t *Weapon;
+extern const class_t *Sound;
 
 #endif

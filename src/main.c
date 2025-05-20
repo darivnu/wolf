@@ -48,6 +48,8 @@ void handle_events(GameClass_t *game)
 void update_game(GameClass_t *game)
 {
     sfTime elapsed = sfClock_getElapsedTime(game->clock);
+    listener_data_t player_pos = {game->player->posX, game->player->posY,
+        game->player->dirX, game->player->dirY};
 
     game->deltaTime = sfTime_asSeconds(elapsed);
     sfClock_restart(game->clock);
@@ -60,6 +62,9 @@ void update_game(GameClass_t *game)
     game->animation->update_animations(game->animation, game->deltaTime);
     game->weapon->handle_input(game->weapon);
     game->weapon->update(game->weapon, game->deltaTime);
+    game->sound->update_sounds(game->sound);
+    game->sound->update_listener_position(game->sound, 
+        player_pos);
 }
 
 void render_game(GameClass_t *game)

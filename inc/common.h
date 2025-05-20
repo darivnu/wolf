@@ -10,6 +10,7 @@
 #include <SFML/Graphics/Types.h>
 #include <SFML/System.h>
 #include <SFML/Window.h>
+#include <SFML/Audio.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
