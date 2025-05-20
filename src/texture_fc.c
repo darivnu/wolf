@@ -32,7 +32,7 @@ void fc_logic(TextureClass_t *self)
 {
     self->set_fc(self);
     for (int y = self->parent->render->height / 2;
-         y < self->parent->render->height; y++) {
+        y < self->parent->render->height; y++) {
         self->fc_loop(self, y);
     }
     sfImage_destroy(self->floorImage);

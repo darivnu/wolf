@@ -20,7 +20,7 @@
     #define DEFAULT_FOV       0.66
     #define DEFAULT_SPEED     4.0
     #define DEFAULT_ROT_SPEED 6.0
-    #define DEFAULT_MOUSE_THRESHOLD 5
+    #define DEFAULT_MOUSE_THRESHOLD 0
     /* ---------*/
     #define INFINITE          1e30
     #define WALL              1
