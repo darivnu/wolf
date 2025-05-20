@@ -9,7 +9,7 @@
 #include <string.h>
 #include "game.h"
 
-void init_animation_data(animation_data_t *anim, const char *name, 
+void init_animation_data(animation_data_t *anim, const char *name,
     animation_type_t type)
 {
     anim->name = strdup(name);
@@ -37,7 +37,6 @@ void update_animations(AnimationClass_t *self, float delta_time)
 void update_animation(animation_data_t *anim, float delta_time)
 {
     anim->current_time += delta_time;
-    
     while (anim->current_time >= anim->frames[anim->current_frame].duration) {
         anim->current_time -= anim->frames[anim->current_frame].duration;
         advance_animation_frame(anim);
@@ -48,12 +47,15 @@ void advance_animation_frame(animation_data_t *anim)
 {
     if (anim->type == ANIM_LOOP) {
         anim->current_frame = (anim->current_frame + 1) % anim->frame_count;
-    } else if (anim->type == ANIM_ONCE) {
-        if (anim->current_frame < anim->frame_count - 1)
+    }
+    if (anim->type == ANIM_ONCE) {
+        if (anim->current_frame < anim->frame_count - 1) {
             anim->current_frame++;
-        else
+        } else {
             anim->is_playing = 0;
-    } else if (anim->type == ANIM_PINGPONG) {
+        }
+    }
+    if (anim->type == ANIM_PINGPONG) {
         handle_pingpong_animation(anim);
     }
 }
@@ -61,7 +63,6 @@ void advance_animation_frame(animation_data_t *anim)
 void handle_pingpong_animation(animation_data_t *anim)
 {
     anim->current_frame += anim->direction;
-    
     if (anim->current_frame >= anim->frame_count - 1) {
         anim->current_frame = anim->frame_count - 1;
         anim->direction = -1;

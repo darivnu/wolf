@@ -24,8 +24,9 @@ void play_animation(AnimationClass_t *self, const char *name)
     animation_data_t *anim;
 
     anim = get_animation(self, name);
-    if (anim)
+    if (anim) {
         anim->is_playing = 1;
+    }
 }
 
 void stop_animation(AnimationClass_t *self, const char *name)
@@ -33,8 +34,9 @@ void stop_animation(AnimationClass_t *self, const char *name)
     animation_data_t *anim;
 
     anim = get_animation(self, name);
-    if (anim)
+    if (anim) {
         anim->is_playing = 0;
+    }
 }
 
 void reset_animation(AnimationClass_t *self, const char *name)

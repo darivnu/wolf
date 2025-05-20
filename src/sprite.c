@@ -37,7 +37,6 @@ void load_texture(SpriteClass_t *self, const char *filepath)
 {
     if (self->texture)
         sfTexture_destroy(self->texture);
-    
     self->texture = sfTexture_createFromFile(filepath, NULL);
     if (self->texture)
         sfSprite_setTexture(self->sprite, self->texture, sfTrue);

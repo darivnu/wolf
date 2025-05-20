@@ -16,7 +16,8 @@ int init_game_components(GameClass_t *game)
     game->screenWidth = 800;
     game->screenHeight = 600;
     sfVideoMode mode = {game->screenWidth, game->screenHeight, 32};
-    game->render->window = sfRenderWindow_create(mode, "Wolf3D", sfClose, NULL);
+    game->render->window =
+        sfRenderWindow_create(mode, "Wolf3D", sfClose, NULL);
     if (!game->render->window)
         return 84;
     game->render->width = game->screenWidth;
@@ -24,21 +25,16 @@ int init_game_components(GameClass_t *game)
     game->render->zBuffer = malloc(sizeof(double) * game->screenWidth);
     if (!game->render->zBuffer)
         return 84;
-    game->map->map_create(game->map, 10, 10);
-    game->player->posX = 5.0;
-    game->player->posY = 5.0;
-    game->player->dirX = 1.0;
-    game->player->dirY = 0.0;
-    game->player->init_player(game->player);
+    game->set_game_basic_components(game);
     game->clock = sfClock_create();
-
+    game->weapon->init_weapon(game->weapon);
     return 0;
 }
 
 void handle_events(GameClass_t *game)
 {
     sfEvent event;
-    
+
     while (sfRenderWindow_pollEvent(game->render->window, &event)) {
         if (event.type == sfEvtClosed) {
             sfRenderWindow_close(game->render->window);
@@ -52,6 +48,7 @@ void handle_events(GameClass_t *game)
 void update_game(GameClass_t *game)
 {
     sfTime elapsed = sfClock_getElapsedTime(game->clock);
+
     game->deltaTime = sfTime_asSeconds(elapsed);
     sfClock_restart(game->clock);
     game->input->forward = 0.0;
@@ -61,7 +58,8 @@ void update_game(GameClass_t *game)
     game->player->player_move(game->player);
     game->player->player_rotate(game->player);
     game->animation->update_animations(game->animation, game->deltaTime);
-    game->sprite->update_sprite(game->sprite, game->deltaTime);
+    game->weapon->handle_input(game->weapon);
+    game->weapon->update(game->weapon, game->deltaTime);
 }
 
 void render_game(GameClass_t *game)
@@ -69,7 +67,7 @@ void render_game(GameClass_t *game)
     sfRenderWindow_clear(game->render->window, sfBlack);
     game->texture->draw_floor_ceiling(game->texture);
     game->render->render_walls(game->render);
-    game->sprite->draw_sprite(game->sprite);
+    game->weapon->render(game->weapon);
     sfRenderWindow_display(game->render->window);
 }
 
@@ -77,7 +75,7 @@ int main(void)
 {
     GameClass_t *game = new_class(Game);
     int status = 0;
-    
+
     if (!game) {
         return 84;
     }
@@ -86,11 +84,7 @@ int main(void)
         destroy_class(game);
         return status;
     }
-    while (sfRenderWindow_isOpen(game->render->window)) {
-        handle_events(game);
-        update_game(game);
-        render_game(game);
-    }
+    game->game_loop(game);
     if (game->render->zBuffer)
         free(game->render->zBuffer);
     if (game->clock)

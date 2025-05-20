@@ -22,6 +22,12 @@ typedef enum {
     ANIM_PINGPONG
 } animation_type_t;
 
+typedef enum {
+    ANIM_STATE_IDLE,
+    ANIM_STATE_FIRING,
+    ANIM_STATE_TRANSITIONING
+} weapon_anim_state_t;
+
 typedef struct animation_frame {
     float duration;
     sfIntRect rect;
@@ -45,6 +51,7 @@ typedef struct animation_aux {
     /* class members */
     GameClass_t *parent;
     animation_data_t **animations;
+    weapon_anim_state_t weapon_animation_state;
     int animation_count;
     /* class methods */
     animation_data_t *(*create_animation)(AnimationClass_t *, const char *,
@@ -58,7 +65,6 @@ typedef struct animation_aux {
     animation_data_t *(*get_animation)(AnimationClass_t *, const char *);
 } AnimationClass_t;
 
-/* Public method prototypes */
 animation_data_t *create_animation(AnimationClass_t *, const char *,
     animation_type_t);
 void add_frame(AnimationClass_t *, animation_data_t *, float, sfIntRect);
@@ -68,7 +74,6 @@ void stop_animation(AnimationClass_t *, const char *);
 void reset_animation(AnimationClass_t *, const char *);
 animation_data_t *get_animation(AnimationClass_t *, const char *);
 
-/* Helper method prototypes */
 void init_animation_data(animation_data_t *, const char *,
     animation_type_t);
 void update_animation(animation_data_t *, float);

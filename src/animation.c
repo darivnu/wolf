@@ -42,7 +42,7 @@ animation_data_t *create_animation(AnimationClass_t *self, const char *name,
     animation_data_t *anim;
     void *temp;
 
-    temp = realloc(self->animations, 
+    temp = realloc(self->animations,
         (self->animation_count + 1) * sizeof(animation_data_t *));
     if (!temp)
         return NULL;
@@ -61,7 +61,7 @@ void add_frame(AnimationClass_t *self, animation_data_t *anim, float duration,
 {
     void *temp;
 
-    temp = realloc(anim->frames, 
+    temp = realloc(anim->frames,
         (anim->frame_count + 1) * sizeof(animation_frame_t));
     if (!temp)
         return;
