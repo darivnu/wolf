@@ -19,6 +19,7 @@ static void constructor(void *ptr, va_list *args)
     self->texture = new_class(Texture, self);
     self->animation = new_class(Animation, self);
     self->weapon = new_class(Weapon, self);
+    self->sound = new_class(Sound, self);
 }
 
 void set_game_basic_components(GameClass_t *game)
@@ -29,6 +30,7 @@ void set_game_basic_components(GameClass_t *game)
     game->player->dirX = 1.0;
     game->player->dirY = 0.0;
     game->player->init_player(game->player);
+    game->init_sound(game);
 }
 
 void game_loop(GameClass_t *game)
@@ -53,6 +55,7 @@ static void destructor(void *ptr)
     destroy_class(self->animation);
     destroy_class(self->sprite);
     destroy_class(self->weapon);
+    destroy_class(self->sound);
 }
 
 const GameClass_t game_init = {
@@ -68,6 +71,7 @@ const GameClass_t game_init = {
     .render_game = render_game,
     .set_game_basic_components = set_game_basic_components,
     .game_loop = game_loop,
+    .init_sound = init_sound,
 };
 
 const class_t *Game = (const class_t *) &game_init;

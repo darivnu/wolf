@@ -49,7 +49,7 @@ void setup_weapon_sprite(WeaponClass_t *self, int frame_height)
 
     wand_idle = self->parent->animation->get_animation(
         self->parent->animation, "wand_idle");
-    self->sprite->set_position(self->sprite, self->parent->screenWidth / 6,
+    self->sprite->set_position(self->sprite, self->parent->screenWidth / 14,
         self->parent->screenHeight - frame_height * 1.2);
     self->sprite->set_scale(self->sprite, 1.2f, 1.2f);
     self->sprite->set_animation(self->sprite, wand_idle);
@@ -82,5 +82,6 @@ void handle_idle_state(WeaponClass_t *self, animation_data_t *idle_anim,
             self->parent->animation, "wand_fire");
         self->sprite->set_animation(self->sprite, fire_anim);
         self->state = WEAPON_STATE_FIRING;
+        self->parent->sound->play_sound(self->parent->sound, "weapon_fire");
     }
 }
