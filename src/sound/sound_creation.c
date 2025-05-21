@@ -15,7 +15,7 @@ void init_music(sound_music_t *music, const char *name)
     music->name = strdup(name);
     music->music = NULL;
     music->volume = 1.0f;
-    music->mode = SOUND_ONCE;
+    music->mode = SOUND_LOOP;
     music->is_playing = 0;
 }
 
