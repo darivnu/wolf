@@ -15,18 +15,18 @@ REPLACE = -L./ -lmy -lcsfml-window -lcsfml-graphics -lcsfml-system \
 PROJECT = wolf3d
 VERSION = 1.0
 
-# Build information
-BUILD_DATE = $(shell date '+%Y-%m-%d %H:%M:%S')
-GIT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD \
-	2>/dev/null || echo "unknown")
-GIT_COMMIT = $(shell git rev-parse --short HEAD \
-	2>/dev/null || echo "unknown")
-COMMIT_COUNT = $(shell git rev-list --count HEAD \
-	2>/dev/null || echo "unknown")
-REPO_URL = $(shell git config --get remote.origin.url \
-	2>/dev/null || echo "unknown")
-SYSTEM = $(shell uname -s)
-ARCHITECTURE = $(shell uname -m)
+# # Build information
+# BUILD_DATE = $(shell date '+%Y-%m-%d %H:%M:%S')
+# GIT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD \
+# 	2>/dev/null || echo "unknown")
+# GIT_COMMIT = $(shell git rev-parse --short HEAD \
+# 	2>/dev/null || echo "unknown")
+# COMMIT_COUNT = $(shell git rev-list --count HEAD \
+# 	2>/dev/null || echo "unknown")
+# REPO_URL = $(shell git config --get remote.origin.url \
+# 	2>/dev/null || echo "unknown")
+# SYSTEM = $(shell uname -s)
+# ARCHITECTURE = $(shell uname -m)
 
 # Source files
 SOURCES = $(wildcard src/*.c)
@@ -78,62 +78,62 @@ $(RESET)"
 	@echo "$(CYAN)Building $(TOTAL_COUNT) files ($(LIB_COUNT) lib, \
 $(SRC_COUNT) prog)$(RESET)\n"
 
-# Project info
-info:
-	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
-	@printf "$(CYAN)$(BOLD)|      PROJECT INFORMATION         |$(RESET)\n"
-	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
-	@printf "$(YELLOW)  Project:   $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(PROJECT)"
-	@printf "$(YELLOW)  Version:   $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(VERSION)"
-	@printf "$(YELLOW)  Binary:    $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(BIN)"
-	@printf "$(YELLOW)  Library:   $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(NAME)"
-	@printf "$(YELLOW)  Built:     $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(BUILD_DATE)"
-	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
-	@printf "$(CYAN)$(BOLD)|      SOURCE CODE STATS           |$(RESET)\n"
-	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
-	@printf "$(YELLOW)  Lib Files: $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(LIB_COUNT)"
-	@printf "$(YELLOW)  Prog Files:$(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(SRC_COUNT)"
-	@printf "$(YELLOW)  Total:     $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(TOTAL_COUNT) files"
-	@printf "$(YELLOW)  Lines:     $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(TOTAL_LINES)"
-	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
-	@printf "$(CYAN)$(BOLD)|      BUILD ENVIRONMENT           |$(RESET)\n"
-	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
-	@printf "$(YELLOW)  Compiler:  $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(CC)"
-	@printf "$(YELLOW)  Flags:     $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(CFLAGS)"
-	@printf "$(YELLOW)  OS:        $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(SYSTEM)"
-	@printf "$(YELLOW)  Arch:      $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(ARCHITECTURE)"
-	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
-	@printf "$(CYAN)$(BOLD)|      GIT INFORMATION             |$(RESET)\n"
-	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
-	@printf "$(YELLOW)  Repo:      $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(REPO_URL)"
-	@printf "$(YELLOW)  Branch:    $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(GIT_BRANCH)"
-	@printf "$(YELLOW)  Commit:    $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(GIT_COMMIT)"
-	@printf "$(YELLOW)  Count:     $(RESET)$(BOLD)%-20s$(RESET)\n" \
-		"$(COMMIT_COUNT)"
-	@printf "$(YELLOW)  Authors:   $(RESET)$(BOLD)\n$(RESET)"
-	@git shortlog -sne 2>/dev/null | sed 's/^/    /' || \
-		echo "    No Git repository found"
-	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
-	@printf "\n"
-	@printf "$(GREEN)✓ Build:$(RESET) $(BOLD)make$(RESET)\n"
-	@printf "$(GREEN)✓ Clean:$(RESET) $(BOLD)make clean$(RESET)\n"
-	@printf "$(GREEN)✓ Help: $(RESET) $(BOLD)make help$(RESET)\n"
+# # Project info
+# info:
+# 	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
+# 	@printf "$(CYAN)$(BOLD)|      PROJECT INFORMATION         |$(RESET)\n"
+# 	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
+# 	@printf "$(YELLOW)  Project:   $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(PROJECT)"
+# 	@printf "$(YELLOW)  Version:   $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(VERSION)"
+# 	@printf "$(YELLOW)  Binary:    $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(BIN)"
+# 	@printf "$(YELLOW)  Library:   $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(NAME)"
+# 	@printf "$(YELLOW)  Built:     $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(BUILD_DATE)"
+# 	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
+# 	@printf "$(CYAN)$(BOLD)|      SOURCE CODE STATS           |$(RESET)\n"
+# 	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
+# 	@printf "$(YELLOW)  Lib Files: $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(LIB_COUNT)"
+# 	@printf "$(YELLOW)  Prog Files:$(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(SRC_COUNT)"
+# 	@printf "$(YELLOW)  Total:     $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(TOTAL_COUNT) files"
+# 	@printf "$(YELLOW)  Lines:     $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(TOTAL_LINES)"
+# 	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
+# 	@printf "$(CYAN)$(BOLD)|      BUILD ENVIRONMENT           |$(RESET)\n"
+# 	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
+# 	@printf "$(YELLOW)  Compiler:  $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(CC)"
+# 	@printf "$(YELLOW)  Flags:     $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(CFLAGS)"
+# 	@printf "$(YELLOW)  OS:        $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(SYSTEM)"
+# 	@printf "$(YELLOW)  Arch:      $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(ARCHITECTURE)"
+# 	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
+# 	@printf "$(CYAN)$(BOLD)|      GIT INFORMATION             |$(RESET)\n"
+# 	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
+# 	@printf "$(YELLOW)  Repo:      $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(REPO_URL)"
+# 	@printf "$(YELLOW)  Branch:    $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(GIT_BRANCH)"
+# 	@printf "$(YELLOW)  Commit:    $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(GIT_COMMIT)"
+# 	@printf "$(YELLOW)  Count:     $(RESET)$(BOLD)%-20s$(RESET)\n" \
+# 		"$(COMMIT_COUNT)"
+# 	@printf "$(YELLOW)  Authors:   $(RESET)$(BOLD)\n$(RESET)"
+# 	@git shortlog -sne 2>/dev/null | sed 's/^/    /' || \
+# 		echo "    No Git repository found"
+# 	@printf "$(CYAN)$(BOLD)+----------------------------------+$(RESET)\n"
+# 	@printf "\n"
+# 	@printf "$(GREEN)✓ Build:$(RESET) $(BOLD)make$(RESET)\n"
+# 	@printf "$(GREEN)✓ Clean:$(RESET) $(BOLD)make clean$(RESET)\n"
+# 	@printf "$(GREEN)✓ Help: $(RESET) $(BOLD)make help$(RESET)\n"
 
 # Library building
 library: $(L_OBJECTS)
