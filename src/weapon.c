@@ -13,7 +13,7 @@ static void constructor(void *ptr, va_list *args)
     WeaponClass_t *self = (WeaponClass_t *)ptr;
 
     self->parent = va_arg(*args, GameClass_t *);
-    self->sprite = NULL;
+    self->weapon_sprite = NULL;
     self->state = WEAPON_STATE_IDLE;
     self->transition_timer = 0.0f;
 }
@@ -22,14 +22,14 @@ static void destructor(void *ptr)
 {
     WeaponClass_t *self = (WeaponClass_t *)ptr;
 
-    if (self->sprite)
-        destroy_class(self->sprite);
+    if (self->weapon_sprite)
+        destroy_class(self->weapon_sprite);
 }
 
 void init_weapon(WeaponClass_t *self)
 {
-    self->sprite = new_class(Sprite, self->parent);
-    if (!self->sprite)
+    self->weapon_sprite = new_class(Sprite, self->parent);
+    if (!self->weapon_sprite)
         return;
     self->load_animations(self);
 }

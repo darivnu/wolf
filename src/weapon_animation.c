@@ -25,7 +25,7 @@ void handle_transition_state(WeaponClass_t *self, animation_data_t *idle_anim)
             self->parent->animation, "wand_idle");
         self->parent->animation->play_animation(
             self->parent->animation, "wand_idle");
-        self->sprite->set_animation(self->sprite, idle_anim);
+        self->weapon_sprite->set_animation(self->weapon_sprite, idle_anim);
         self->state = WEAPON_STATE_IDLE;
     }
 }
@@ -56,14 +56,14 @@ void handle_weapon_input(WeaponClass_t *self)
 
 void update_weapon(WeaponClass_t *self, float delta_time)
 {
-    if (!self->sprite)
+    if (!self->weapon_sprite)
         return;
-    self->sprite->update_sprite(self->sprite, delta_time);
+    self->weapon_sprite->update_sprite(self->weapon_sprite, delta_time);
 }
 
 void render_weapon(WeaponClass_t *self)
 {
-    if (!self->sprite)
+    if (!self->weapon_sprite)
         return;
-    self->sprite->draw_sprite(self->sprite);
+    self->weapon_sprite->draw_sprite(self->weapon_sprite);
 }

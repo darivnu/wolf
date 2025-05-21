@@ -27,7 +27,7 @@ typedef struct weapon_aux {
     class_t meta;
     /* class members */
     GameClass_t *parent;
-    SpriteClass_t *sprite;
+    SpriteClass_t *weapon_sprite;
     weapon_state_t state;
     float transition_timer;
     /* class methods */

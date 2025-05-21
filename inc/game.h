@@ -40,7 +40,6 @@ typedef struct game_aux {
     WeaponClass_t *weapon;
     SoundClass_t *sound;
 
-    SpriteClass_t *weapon_sprite;
     /* --------------- */
     int screenX;
     int screenWidth;

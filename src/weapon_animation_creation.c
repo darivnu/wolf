@@ -49,11 +49,11 @@ void setup_weapon_sprite(WeaponClass_t *self, int frame_height)
 
     wand_idle = self->parent->animation->get_animation(
         self->parent->animation, "wand_idle");
-    self->sprite->set_position(self->sprite, self->parent->screenWidth / 14,
+    self->weapon_sprite->set_position(self->weapon_sprite, self->parent->screenWidth / 14,
         self->parent->screenHeight - frame_height * 1.2);
-    self->sprite->set_scale(self->sprite, 1.2f, 1.2f);
-    self->sprite->set_animation(self->sprite, wand_idle);
-    self->sprite->set_visible(self->sprite, 1);
+    self->weapon_sprite->set_scale(self->weapon_sprite, 1.2f, 1.2f);
+    self->weapon_sprite->set_animation(self->weapon_sprite, wand_idle);
+    self->weapon_sprite->set_visible(self->weapon_sprite, 1);
     self->parent->animation->play_animation(
         self->parent->animation, "wand_idle");
 }
@@ -62,9 +62,9 @@ void load_weapon_animations(WeaponClass_t *self)
 {
     const int frame_width = 256;
     const int frame_height = 256;
-    const char *spritesheet_path = "assets/sprites/wandsprite.png";
+    const char *spritesheet_path = "assets/sprites/wandsprite_orange1.png";
 
-    self->sprite->load_texture(self->sprite, spritesheet_path);
+    self->weapon_sprite->load_texture(self->weapon_sprite, spritesheet_path);
     self->create_idle_animation(self, frame_width, frame_height);
     self->create_fire_animation(self, frame_width, frame_height);
     self->setup_weapon_sprite(self, frame_height);
@@ -80,7 +80,7 @@ void handle_idle_state(WeaponClass_t *self, animation_data_t *idle_anim,
             self->parent->animation, "wand_fire");
         self->parent->animation->play_animation(
             self->parent->animation, "wand_fire");
-        self->sprite->set_animation(self->sprite, fire_anim);
+        self->weapon_sprite->set_animation(self->weapon_sprite, fire_anim);
         self->state = WEAPON_STATE_FIRING;
         self->parent->sound->play_sound(self->parent->sound, "weapon_fire");
     }
