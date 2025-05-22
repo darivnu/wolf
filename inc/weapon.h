@@ -22,6 +22,11 @@ typedef enum {
     WEAPON_STATE_TRANSITIONING
 } weapon_state_t;
 
+typedef enum {
+    SPELL_TYPE_BLUE,
+    SPELL_TYPE_ORANGE
+} spell_type_t;
+
 typedef struct weapon_aux {
     /* class metadata */
     class_t meta;
@@ -29,6 +34,7 @@ typedef struct weapon_aux {
     GameClass_t *parent;
     SpriteClass_t *weapon_sprite;
     weapon_state_t state;
+    spell_type_t current_spell;
     float transition_timer;
     /* class methods */
     void (*init_weapon)(WeaponClass_t *);
@@ -43,6 +49,8 @@ typedef struct weapon_aux {
     void (*handle_firing_state)(WeaponClass_t *, animation_data_t *);
     void (*handle_transition_state)(WeaponClass_t *, animation_data_t *);
     void (*render)(WeaponClass_t *);
+    void (*switch_spell)(WeaponClass_t *, spell_type_t);
+    void (*handle_spell_switch)(WeaponClass_t *);
 } WeaponClass_t;
 
 void init_weapon(WeaponClass_t *);
@@ -57,6 +65,8 @@ void handle_idle_state(WeaponClass_t *, animation_data_t *,
 void handle_firing_state(WeaponClass_t *, animation_data_t *);
 void handle_transition_state(WeaponClass_t *, animation_data_t *);
 void render_weapon(WeaponClass_t *);
+void switch_spell(WeaponClass_t *, spell_type_t);
+void handle_spell_switch(WeaponClass_t *);
 
 extern const class_t *Weapon;
 

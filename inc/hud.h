@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics/RectangleShape.h>
 #include "oop.h"
+#include "weapon.h"
 
 #ifndef INCLUDED_HUD_H
     #define INCLUDED_HUD_H
@@ -28,6 +29,7 @@ typedef struct HUD_aux {
     float last_mana_use_time;
     float mana_regen_delay;
     float mana_regen_rate;
+    spell_type_t current_spell;
     /* class methods */
     void (*init_hud)(HUDClass_t *);
     void (*render_hud)(HUDClass_t *);
@@ -38,6 +40,7 @@ typedef struct HUD_aux {
     void (*update_hud)(HUDClass_t *, float);
     void (*use_mana)(HUDClass_t *, float);
     void (*regenerate_mana)(HUDClass_t *, float);
+    void (*switch_spell_hud)(HUDClass_t *, spell_type_t);
 } HUDClass_t;
 
 void init_hud(HUDClass_t *);
@@ -49,6 +52,7 @@ void update_mana_bar(HUDClass_t *, float);
 void update_hud(HUDClass_t *, float);
 void use_mana(HUDClass_t *, float);
 void regenerate_mana(HUDClass_t *, float);
+void switch_spell_hud(HUDClass_t *, spell_type_t);
 
 
 #endif

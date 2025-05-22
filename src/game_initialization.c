@@ -29,7 +29,9 @@ void init_sound(GameClass_t *game)
     game->sound->create_sound_effect(
         game->sound, "footstep", "assets/sounds/footsteps.mp3");
     game->sound->create_sound_effect(
-        game->sound, "weapon_fire", "assets/sounds/blue_spell1.wav");
+        game->sound, "weapon_fire_blue", "assets/sounds/blue_spell1.wav");
+    game->sound->create_sound_effect(
+        game->sound, "weapon_fire_orange", "assets/sounds/orange_spell1.wav");
     game->sound->set_music_volume(game->sound, "background", 8.5f);
     game->sound->set_effect_volume(game->sound, 8.5f);
     game->sound->play_music(game->sound, "background");

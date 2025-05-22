@@ -28,4 +28,13 @@
     #define NOWALL            0
     #define NUM_TEXTURES 1
 
+    /* BARS */
+    #define BAR_SIZE 18
+    #define BAR_X 223
+    #define HEALTH_BAR_Y 30
+    #define MANA_BAR_Y 63
+    #define BAR_WIDTH_MAX 123.0f
+    #define DEFAULT_MANA_REG_DELAY 4.0f
+    #define DEFAULT_MANA_REG_RATE 20.0f
+
 #endif

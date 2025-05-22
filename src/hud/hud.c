@@ -18,12 +18,23 @@ static void constructor(void *ptr, va_list *args)
     self->parent = va_arg(*args, GameClass_t *);
     self->health_bar = NULL;
     self->mana_bar = NULL;
-    self->max_bar_width = 123.0f;
+    self->max_bar_width = BAR_WIDTH_MAX;
     self->current_health = 100.0f;
     self->current_mana = 100.0f;
     self->last_mana_use_time = 0.0f;
-    self->mana_regen_delay = 4.0f;
-    self->mana_regen_rate = 20.0f;
+    self->mana_regen_delay = DEFAULT_MANA_REG_DELAY;
+    self->mana_regen_rate = DEFAULT_MANA_REG_RATE;
+    self->current_spell = SPELL_TYPE_BLUE;
+}
+
+static void destructor(void *ptr)
+{
+    HUDClass_t *self = (HUDClass_t *) ptr;
+
+    if (self->health_bar)
+        sfRectangleShape_destroy(self->health_bar);
+    if (self->mana_bar)
+        sfRectangleShape_destroy(self->mana_bar);
 }
 
 void init_hud(HUDClass_t *self)
@@ -37,15 +48,17 @@ void init_hud(HUDClass_t *self)
     self->create_mana_bar(self);
 }
 
-static void destructor(void *ptr)
+void render_hud(HUDClass_t *self)
 {
-    HUDClass_t *self = (HUDClass_t *) ptr;
-
+    self->stats->draw_sprite(self->stats);
     if (self->health_bar)
-        sfRectangleShape_destroy(self->health_bar);
+        sfRenderWindow_drawRectangleShape(self->parent->render->window,
+            self->health_bar, NULL);
     if (self->mana_bar)
-        sfRectangleShape_destroy(self->mana_bar);
+        sfRenderWindow_drawRectangleShape(self->parent->render->window,
+            self->mana_bar, NULL);
 }
+
 
 void update_hud(HUDClass_t *self, float delta_time)
 {
@@ -53,6 +66,19 @@ void update_hud(HUDClass_t *self, float delta_time)
     if (self->last_mana_use_time >= self->mana_regen_delay) {
         self->regenerate_mana(self, delta_time);
     }
+}
+
+void switch_spell_hud(HUDClass_t *self, spell_type_t spell_type)
+{
+    const char *texture_path;
+
+    self->current_spell = spell_type;
+    if (spell_type == SPELL_TYPE_BLUE) {
+        texture_path = "assets/sprites/ui_blue_void.png";
+    } else {
+        texture_path = "assets/sprites/ui_orange_void.png";
+    }
+    self->stats->load_texture(self->stats, texture_path);
 }
 
 const HUDClass_t hud_init = {
@@ -71,6 +97,7 @@ const HUDClass_t hud_init = {
     .update_hud = update_hud,
     .use_mana = use_mana,
     .regenerate_mana = regenerate_mana,
+    .switch_spell_hud = switch_spell_hud,
 };
 
 const class_t *HUD = (const class_t *) &hud_init;
