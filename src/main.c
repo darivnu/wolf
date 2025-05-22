@@ -66,6 +66,7 @@ void update_game(GameClass_t *game)
     game->sound->update_sounds(game->sound);
     game->sound->update_listener_position(game->sound, 
         player_pos);
+    game->hud->update_hud(game->hud, game->deltaTime);
 }
 
 void render_game(GameClass_t *game)

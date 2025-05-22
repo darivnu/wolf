@@ -74,6 +74,8 @@ void handle_idle_state(WeaponClass_t *self, animation_data_t *idle_anim,
     animation_data_t *fire_anim)
 {
     if (sfMouse_isButtonPressed(sfMouseLeft)) {
+        if (self->parent->hud->current_mana < 10.0f)
+            return;
         self->parent->animation->stop_animation(
             self->parent->animation, "wand_idle");
         self->parent->animation->reset_animation(
@@ -83,5 +85,6 @@ void handle_idle_state(WeaponClass_t *self, animation_data_t *idle_anim,
         self->weapon_sprite->set_animation(self->weapon_sprite, fire_anim);
         self->state = WEAPON_STATE_FIRING;
         self->parent->sound->play_sound(self->parent->sound, "weapon_fire");
+        self->parent->hud->use_mana(self->parent->hud, 10.0f);
     }
 }

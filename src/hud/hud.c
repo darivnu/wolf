@@ -18,19 +18,12 @@ static void constructor(void *ptr, va_list *args)
     self->parent = va_arg(*args, GameClass_t *);
     self->health_bar = NULL;
     self->mana_bar = NULL;
-    self->max_bar_width = 122.0f;
+    self->max_bar_width = 123.0f;
     self->current_health = 100.0f;
     self->current_mana = 100.0f;
-}
-
-static void destructor(void *ptr)
-{
-    HUDClass_t *self = (HUDClass_t *) ptr;
-
-    if (self->health_bar)
-        sfRectangleShape_destroy(self->health_bar);
-    if (self->mana_bar)
-        sfRectangleShape_destroy(self->mana_bar);
+    self->last_mana_use_time = 0.0f;
+    self->mana_regen_delay = 4.0f;
+    self->mana_regen_rate = 20.0f;
 }
 
 void init_hud(HUDClass_t *self)
@@ -44,15 +37,22 @@ void init_hud(HUDClass_t *self)
     self->create_mana_bar(self);
 }
 
-void render_hud(HUDClass_t *self)
+static void destructor(void *ptr)
 {
-    self->stats->draw_sprite(self->stats);
+    HUDClass_t *self = (HUDClass_t *) ptr;
+
     if (self->health_bar)
-        sfRenderWindow_drawRectangleShape(self->parent->render->window,
-            self->health_bar, NULL);
+        sfRectangleShape_destroy(self->health_bar);
     if (self->mana_bar)
-        sfRenderWindow_drawRectangleShape(self->parent->render->window,
-            self->mana_bar, NULL);
+        sfRectangleShape_destroy(self->mana_bar);
+}
+
+void update_hud(HUDClass_t *self, float delta_time)
+{
+    self->last_mana_use_time += delta_time;
+    if (self->last_mana_use_time >= self->mana_regen_delay) {
+        self->regenerate_mana(self, delta_time);
+    }
 }
 
 const HUDClass_t hud_init = {
@@ -68,6 +68,9 @@ const HUDClass_t hud_init = {
     .create_mana_bar = create_mana_bar,
     .update_health_bar = update_health_bar,
     .update_mana_bar = update_mana_bar,
+    .update_hud = update_hud,
+    .use_mana = use_mana,
+    .regenerate_mana = regenerate_mana,
 };
 
 const class_t *HUD = (const class_t *) &hud_init;

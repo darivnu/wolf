@@ -25,6 +25,9 @@ typedef struct HUD_aux {
     float max_bar_width;
     float current_health;
     float current_mana;
+    float last_mana_use_time;
+    float mana_regen_delay;
+    float mana_regen_rate;
     /* class methods */
     void (*init_hud)(HUDClass_t *);
     void (*render_hud)(HUDClass_t *);
@@ -32,6 +35,9 @@ typedef struct HUD_aux {
     void (*create_mana_bar)(HUDClass_t *);
     void (*update_health_bar)(HUDClass_t *, float);
     void (*update_mana_bar)(HUDClass_t *, float);
+    void (*update_hud)(HUDClass_t *, float);
+    void (*use_mana)(HUDClass_t *, float);
+    void (*regenerate_mana)(HUDClass_t *, float);
 } HUDClass_t;
 
 void init_hud(HUDClass_t *);
@@ -40,6 +46,9 @@ void create_health_bar(HUDClass_t *);
 void create_mana_bar(HUDClass_t *);
 void update_health_bar(HUDClass_t *, float);
 void update_mana_bar(HUDClass_t *, float);
+void update_hud(HUDClass_t *, float);
+void use_mana(HUDClass_t *, float);
+void regenerate_mana(HUDClass_t *, float);
 
 
 #endif
