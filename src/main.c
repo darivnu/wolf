@@ -28,6 +28,7 @@ int init_game_components(GameClass_t *game)
     game->set_game_basic_components(game);
     game->clock = sfClock_create();
     game->weapon->init_weapon(game->weapon);
+    game->hud->init_hud(game->hud);
     return 0;
 }
 
@@ -73,6 +74,7 @@ void render_game(GameClass_t *game)
     game->texture->draw_floor_ceiling(game->texture);
     game->render->render_walls(game->render);
     game->weapon->render(game->weapon);
+    game->hud->stats->draw_sprite(game->hud->stats);
     sfRenderWindow_display(game->render->window);
 }
 

@@ -18,6 +18,7 @@
 #include "sprite.h"
 #include "weapon.h"
 #include "sound.h"
+#include "hud.h"
 
 #ifndef INCLUDED_GAME_H
     #define INCLUDED_GAME_H
@@ -39,6 +40,7 @@ typedef struct game_aux {
     SpriteClass_t *sprite;
     WeaponClass_t *weapon;
     SoundClass_t *sound;
+    HUDClass_t *hud;
 
     /* --------------- */
     int screenX;
@@ -78,5 +80,6 @@ extern const class_t *Animation;
 extern const class_t *Sprite;
 extern const class_t *Weapon;
 extern const class_t *Sound;
+extern const class_t *HUD;
 
 #endif

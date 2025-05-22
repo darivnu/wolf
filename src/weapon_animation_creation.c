@@ -62,7 +62,7 @@ void load_weapon_animations(WeaponClass_t *self)
 {
     const int frame_width = 256;
     const int frame_height = 256;
-    const char *spritesheet_path = "assets/sprites/wandsprite_orange1.png";
+    const char *spritesheet_path = "assets/sprites/wandsprite_blue.png";
 
     self->weapon_sprite->load_texture(self->weapon_sprite, spritesheet_path);
     self->create_idle_animation(self, frame_width, frame_height);
