@@ -74,7 +74,7 @@ void render_game(GameClass_t *game)
     game->texture->draw_floor_ceiling(game->texture);
     game->render->render_walls(game->render);
     game->weapon->render(game->weapon);
-    game->hud->stats->draw_sprite(game->hud->stats);
+    game->hud->render_hud(game->hud);
     sfRenderWindow_display(game->render->window);
 }
 
