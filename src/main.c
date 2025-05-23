@@ -94,6 +94,8 @@ int main(void)
         destroy_class(game);
         return 84;
     }
+    if (game->map)
+        game->map->load_from_data = &load_from_data;
     if (!game->map || !game->map->load_from_data) {
         destroy_class(game);
         return 84;
@@ -107,6 +109,7 @@ int main(void)
         free(game->render->zBuffer);
     if (game->clock)
         sfClock_destroy(game->clock);
+
     destroy_class(game);
     return 0;
 }
