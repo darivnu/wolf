@@ -6,6 +6,7 @@
 */
 
 #include <SFML/System/Types.h>
+#include <SFML/Window/VideoMode.h>
 #include "common.h"
 #include "input.h"
 #include "map.h"
@@ -41,6 +42,7 @@ typedef struct game_aux {
     SoundClass_t *sound;
 
     /* --------------- */
+    sfVideoMode mode;
     int screenX;
     int screenWidth;
     int screenHeight;

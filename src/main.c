@@ -15,9 +15,9 @@ int init_game_components(GameClass_t *game)
 {
     game->screenWidth = 800;
     game->screenHeight = 600;
-    sfVideoMode mode = {game->screenWidth, game->screenHeight, 32};
+    game->mode = (sfVideoMode){game->screenWidth, game->screenHeight, 32};
     game->render->window =
-        sfRenderWindow_create(mode, "Wolf3D", sfClose, NULL);
+        sfRenderWindow_create(game->mode, "Wolf3D", sfClose, NULL);
     if (!game->render->window)
         return 84;
     game->render->width = game->screenWidth;
@@ -63,8 +63,7 @@ void update_game(GameClass_t *game)
     game->weapon->handle_input(game->weapon);
     game->weapon->update(game->weapon, game->deltaTime);
     game->sound->update_sounds(game->sound);
-    game->sound->update_listener_position(game->sound, 
-        player_pos);
+    game->sound->update_listener_position(game->sound, player_pos);
 }
 
 void render_game(GameClass_t *game)
