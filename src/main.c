@@ -9,7 +9,9 @@
 #include <SFML/System.h>
 #include <stdlib.h>
 #include <time.h>
-#include "game.h"
+#include "../inc/game.h"
+#include "../inc/state.h"
+#include "../inc/menu.h"
 
 int init_game_components(GameClass_t *game)
 {
@@ -78,22 +80,62 @@ void render_game(GameClass_t *game)
 
 int main(void)
 {
-    GameClass_t *game = new_class(Game);
-    int status = 0;
-
-    if (!game) {
+    sfVideoMode mode = {1280, 720, 32};
+    sfRenderWindow *window = sfRenderWindow_create(mode, "Harry Potter Wolf3D", sfClose, NULL);
+    if (!window)
         return 84;
+
+    sfRenderWindow_setFramerateLimit(window, 60);
+
+    state_class_t *state = create_state_manager();
+    if (!state)
+        return 84;
+
+    main_menu_t *menu = create_main_menu();
+    if (!menu)
+        return 84;
+
+    sfEvent event;
+    while (sfRenderWindow_isOpen(window)) {
+        while (sfRenderWindow_pollEvent(window, &event)) {
+            if (event.type == sfEvtClosed)
+                sfRenderWindow_close(window);
+
+            // Menú principal
+            if (state->get_state(state) == GAME_MENU)
+                handle_main_menu(menu, state, window, &event);
+
+            // Aquí podrías manejar eventos de otros estados también
+        }
+
+        sfRenderWindow_clear(window, sfBlack);
+
+        switch (state->get_state(state)) {
+            case GAME_MENU:
+                render_main_menu(menu, window);
+                break;
+        
+            case GAME_PLAYING:
+                // Aquí deberías poner tu bucle de juego real
+                // Por ahora puedes poner una pantalla negra limpia
+                break;
+        
+            case GAME_SETTINGS:
+                // Por ahora solo un fondo, luego añadimos botón y texto
+                break;
+        
+            case GAME_OVER:
+                // Puedes hacer un fadeout o mensaje
+                break;
+        }
+        
+        
+        
+        sfRenderWindow_display(window);
     }
-    status = init_game_components(game);
-    if (status != 0) {
-        destroy_class(game);
-        return status;
-    }
-    game->game_loop(game);
-    if (game->render->zBuffer)
-        free(game->render->zBuffer);
-    if (game->clock)
-        sfClock_destroy(game->clock);
-    destroy_class(game);
+
+    destroy_main_menu(menu);
+    destroy_state_manager(state);
+    sfRenderWindow_destroy(window);
     return 0;
 }
