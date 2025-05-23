@@ -5,7 +5,7 @@
 ** sound_control
 */
 
-#include "game.h"
+#include "../../inc/game.h"
 
 void pause_sound(SoundClass_t *self, const char *name)
 {

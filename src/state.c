@@ -5,8 +5,8 @@
 ** state
 */
 
-#include <stdlib.h>
 #include "../inc/state.h"
+#include <stdlib.h>
 
 static void set_game_state(state_class_t *state, game_state_e new_state)
 {

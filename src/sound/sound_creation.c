@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include "game.h"
+#include "../../inc/game.h"
 
 
 void init_music(sound_music_t *music, const char *name)

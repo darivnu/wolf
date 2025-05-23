@@ -5,7 +5,7 @@
 ** sprite_utils
 */
 
-#include "game.h"
+#include "../../inc/game.h"
 
 void set_scale(SpriteClass_t *self, float x, float y)
 {

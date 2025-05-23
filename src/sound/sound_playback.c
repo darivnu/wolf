@@ -5,7 +5,7 @@
 ** sound_playback
 */
 
-#include "game.h"
+#include "../../inc/game.h"
 
 void play_sound(SoundClass_t *self, const char *name)
 {

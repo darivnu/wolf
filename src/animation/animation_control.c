@@ -6,7 +6,7 @@
 */
 
 #include <string.h>
-#include "game.h"
+#include "../../inc/game.h"
 
 animation_data_t *get_animation(AnimationClass_t *self, const char *name)
 {

@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include "game.h"
+#include "../../inc/game.h"
 
 void init_animation_data(animation_data_t *anim, const char *name,
     animation_type_t type)

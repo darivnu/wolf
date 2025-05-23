@@ -5,8 +5,8 @@
 ** weapon
 */
 
-#include "game.h"
-#include "weapon.h"
+#include "../inc/game.h"
+#include "../inc/weapon.h"
 
 static void constructor(void *ptr, va_list *args)
 {

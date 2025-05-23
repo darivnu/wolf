@@ -6,7 +6,7 @@
 */
 
 #include <string.h>
-#include "game.h"
+#include "../../inc/game.h"
 
 sound_effect_t *get_sound(SoundClass_t *self, const char *name)
 {

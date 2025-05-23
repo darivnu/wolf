@@ -5,7 +5,7 @@
 ** sound_volume
 */
 
-#include "game.h"
+#include "../../inc/game.h"
 
 void set_master_volume(SoundClass_t *self, float volume)
 {

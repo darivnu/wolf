@@ -5,7 +5,7 @@
 ** sprite_render
 */
 
-#include "game.h"
+#include "../../inc/game.h"
 
 void update_sprite(SpriteClass_t *self, float delta_time)
 {

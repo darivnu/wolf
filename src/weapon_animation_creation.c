@@ -5,7 +5,7 @@
 ** weapon_animation_creation
 */
 
-#include "game.h"
+#include "../inc/game.h"
 
 void create_idle_animation(
     WeaponClass_t *self, int frame_width, int frame_height)

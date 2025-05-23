@@ -5,7 +5,7 @@
 ** texture_fc_utils
 */
 
-#include "game.h"
+#include "../inc/game.h"
 
 void set_fc(TextureClass_t *self)
 {

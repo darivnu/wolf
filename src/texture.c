@@ -9,7 +9,7 @@
 #include <SFML/Graphics/Texture.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
-#include "game.h"
+#include "../inc/game.h"
 
 static void constructor(void *ptr, va_list *args)
 {

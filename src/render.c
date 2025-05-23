@@ -10,7 +10,7 @@
 #include <SFML/Graphics/Vertex.h>
 #include <SFML/Graphics/VertexArray.h>
 #include <SFML/System/Vector2.h>
-#include "game.h"
+#include "../inc/game.h"
 
 static void constructor(void *ptr, va_list *args)
 {

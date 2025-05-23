@@ -5,8 +5,8 @@
 ** weapon_animation_functions
 */
 
-#include "game.h"
-#include "weapon.h"
+#include "../inc/game.h"
+#include "../inc/weapon.h"
 
 void handle_firing_state(WeaponClass_t *self, animation_data_t *fire_anim)
 {

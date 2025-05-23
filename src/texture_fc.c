@@ -5,7 +5,7 @@
 ** texture_fc
 */
 
-#include "game.h"
+#include "../inc/game.h"
 
 void draw_floor_ceiling(TextureClass_t *self)
 {

@@ -5,7 +5,7 @@
 ** sound_update
 */
 
-#include "game.h"
+#include "../../inc/game.h"
 
 void update_sounds_effect(SoundClass_t *self, int i, sfSoundStatus status)
 {

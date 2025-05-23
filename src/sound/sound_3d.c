@@ -5,7 +5,7 @@
 ** sound_3d
 */
 
-#include "game.h"
+#include "../../inc/game.h"
 
 void set_sound_3d_position(SoundClass_t *self, const char *name,
     sound_position_t pos)

@@ -7,7 +7,7 @@
 
 #include <SFML/Graphics/Sprite.h>
 #include <SFML/Graphics/Texture.h>
-#include "game.h"
+#include "../../inc/game.h"
 
 static void constructor(void *ptr, va_list *args)
 {

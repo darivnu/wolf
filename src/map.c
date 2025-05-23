@@ -5,7 +5,7 @@
 ** map
 */
 
-#include "game.h"
+#include "../inc/game.h"
 
 static void constructor(void *ptr, va_list *args)
 {
