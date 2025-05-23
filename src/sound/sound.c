@@ -20,7 +20,7 @@ static void constructor(void *ptr, va_list *args)
     self->music_count = 0;
     self->master_volume = 1.0f;
     self->effect_volume = 1.0f;
-    self->music_volume = 1.0f;
+    self->music_volume = 0.0f; //remember to adjust to 1
 }
 
 static void destructor(void *ptr)

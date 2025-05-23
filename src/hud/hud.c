@@ -55,6 +55,7 @@ void init_hud(HUDClass_t *self)
     self->create_health_bar(self);
     self->create_mana_bar(self);
     self->init_minimap(self);
+    self->set_wizard_portrait_sprite(self);
 }
 
 void render_hud(HUDClass_t *self)
@@ -67,6 +68,8 @@ void render_hud(HUDClass_t *self)
         sfRenderWindow_drawRectangleShape(self->parent->render->window,
             self->mana_bar, NULL);
     self->render_minimap(self);
+    if (self->wizard)
+        self->wizard->draw_sprite(self->wizard);
 }
 
 void update_hud(HUDClass_t *self, float delta_time)
@@ -126,9 +129,8 @@ const HUDClass_t hud_init = {
     .cleanup_minimap_walls = cleanup_minimap_walls,
     .cleanup_minimap_player = cleanup_minimap_player,
     .cleanup_minimap_direction = cleanup_minimap_direction,
-    // .calculate_player_minimap_pos = calculate_player_minimap_pos,
-    // .calculate_direction_end_pos = calculate_direction_end_pos,
-    // .setup_direction_line = setup_direction_line,
+    .set_wizard_portrait_anim = set_wizard_portrait_anim,
+    .set_wizard_portrait_sprite = set_wizard_portrait_sprite,
 };
 
 const class_t *HUD = (const class_t *) &hud_init;

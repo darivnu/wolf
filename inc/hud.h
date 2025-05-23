@@ -23,6 +23,8 @@ typedef struct HUD_aux {
     /* class members */
     GameClass_t *parent;
     SpriteClass_t *stats;
+    SpriteClass_t *wizard;
+    animation_data_t *wizard_animation;
     sfRectangleShape *health_bar;
     sfRectangleShape *mana_bar;
     float max_bar_width;
@@ -72,6 +74,8 @@ typedef struct HUD_aux {
     void (*calculate_player_minimap_pos)(HUDClass_t *, sfVector2f *);
     void (*calculate_direction_end_pos)(HUDClass_t *, sfVector2f, sfVector2f *);
     void (*setup_direction_line)(HUDClass_t *, sfVector2f, sfVector2f);
+    void (*set_wizard_portrait_anim)(HUDClass_t *);
+    void (*set_wizard_portrait_sprite)(HUDClass_t *);
 } HUDClass_t;
 
 void init_hud(HUDClass_t *);
@@ -106,5 +110,7 @@ void cleanup_minimap_direction(HUDClass_t *);
 void calculate_player_minimap_pos(HUDClass_t *, sfVector2f *);
 void calculate_direction_end_pos(HUDClass_t *, sfVector2f, sfVector2f *);
 void setup_direction_line(HUDClass_t *, sfVector2f, sfVector2f);
+void set_wizard_portrait_anim(HUDClass_t *);
+void set_wizard_portrait_sprite(HUDClass_t *);
 
 #endif
