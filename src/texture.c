@@ -27,7 +27,7 @@ void load_textures(TextureClass_t *self)
     self->ceilingTexture =
         sfTexture_createFromFile("assets/textures/str_stonegen1.png", NULL);
     self->wallTextures[0] =
-        sfTexture_createFromFile("assets/textures/str_stonebrk1.png", NULL);
+        sfTexture_createFromFile("assets/textures/bendetti.png", NULL);
     self->wallTextures[1] =
         sfTexture_createFromFile("assets/textures/str_metalflr1.png", NULL);
     self->wallTextures[2] =

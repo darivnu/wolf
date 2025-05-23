@@ -20,6 +20,7 @@ static void constructor(void *ptr, va_list *args)
     self->animation = new_class(Animation, self);
     self->weapon = new_class(Weapon, self);
     self->sound = new_class(Sound, self);
+    self->hud = new_class(HUD, self);
 }
 
 void set_game_basic_components(GameClass_t *game)
@@ -63,6 +64,7 @@ static void destructor(void *ptr)
     destroy_class(self->sprite);
     destroy_class(self->weapon);
     destroy_class(self->sound);
+    destroy_class(self->hud);
 }
 
 const GameClass_t game_init = {

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2025
 ** wolf
 ** File description:
-** weapon_animation_functions
+** weapon_animation
 */
 
 #include "game.h"
@@ -10,8 +10,8 @@
 
 void handle_firing_state(WeaponClass_t *self, animation_data_t *fire_anim)
 {
-    if (fire_anim->current_frame >= fire_anim->frame_count - 1 &&
-        !fire_anim->is_playing) {
+    if (fire_anim->current_frame >= fire_anim->frame_count - 1
+        && !fire_anim->is_playing) {
         self->state = WEAPON_STATE_TRANSITIONING;
         self->transition_timer = 0.04f;
     }
@@ -30,17 +30,9 @@ void handle_transition_state(WeaponClass_t *self, animation_data_t *idle_anim)
     }
 }
 
-void handle_weapon_input(WeaponClass_t *self)
+static void handle_weapon_switch(WeaponClass_t *self,
+    animation_data_t *idle_anim, animation_data_t *fire_anim)
 {
-    animation_data_t *idle_anim;
-    animation_data_t *fire_anim;
-
-    idle_anim = self->parent->animation->get_animation(
-        self->parent->animation, "wand_idle");
-    fire_anim = self->parent->animation->get_animation(
-        self->parent->animation, "wand_fire");
-    if (!idle_anim || !fire_anim)
-        return;
     switch (self->state) {
         case WEAPON_STATE_IDLE:
             self->handle_idle_state(self, idle_anim, fire_anim);
@@ -52,6 +44,21 @@ void handle_weapon_input(WeaponClass_t *self)
             self->handle_transition_state(self, idle_anim);
             break;
     }
+}
+
+void handle_weapon_input(WeaponClass_t *self)
+{
+    animation_data_t *idle_anim;
+    animation_data_t *fire_anim;
+
+    idle_anim = self->parent->animation->get_animation(
+        self->parent->animation, "wand_idle");
+    fire_anim = self->parent->animation->get_animation(
+        self->parent->animation, "wand_fire");
+    if (!idle_anim || !fire_anim)
+        return;
+    self->handle_spell_switch(self);
+    handle_weapon_switch(self, idle_anim, fire_anim);
 }
 
 void update_weapon(WeaponClass_t *self, float delta_time)

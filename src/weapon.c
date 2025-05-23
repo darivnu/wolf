@@ -5,22 +5,23 @@
 ** weapon
 */
 
-#include "game.h"
 #include "weapon.h"
+#include "game.h"
 
 static void constructor(void *ptr, va_list *args)
 {
-    WeaponClass_t *self = (WeaponClass_t *)ptr;
+    WeaponClass_t *self = (WeaponClass_t *) ptr;
 
     self->parent = va_arg(*args, GameClass_t *);
     self->weapon_sprite = NULL;
     self->state = WEAPON_STATE_IDLE;
+    self->current_spell = SPELL_TYPE_BLUE;
     self->transition_timer = 0.0f;
 }
 
 static void destructor(void *ptr)
 {
-    WeaponClass_t *self = (WeaponClass_t *)ptr;
+    WeaponClass_t *self = (WeaponClass_t *) ptr;
 
     if (self->weapon_sprite)
         destroy_class(self->weapon_sprite);
@@ -52,6 +53,8 @@ const WeaponClass_t weapon_init = {
     .handle_firing_state = handle_firing_state,
     .handle_transition_state = handle_transition_state,
     .render = render_weapon,
+    .switch_spell = switch_spell,
+    .handle_spell_switch = handle_spell_switch,
 };
 
-const class_t *Weapon = (const class_t *)&weapon_init;
+const class_t *Weapon = (const class_t *) &weapon_init;

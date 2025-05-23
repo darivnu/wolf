@@ -10,19 +10,19 @@
 void update_sounds_effect(SoundClass_t *self, int i, sfSoundStatus status)
 {
     if (self->effects[i]->sound && self->effects[i]->is_playing) {
-            status = sfSound_getStatus(self->effects[i]->sound);
-            if (status != sfPlaying)
-                self->effects[i]->is_playing = 0;
-        }
+        status = sfSound_getStatus(self->effects[i]->sound);
+        if (status != sfPlaying)
+            self->effects[i]->is_playing = 0;
+    }
 }
 
 void update_sounds_music(SoundClass_t *self, int i, sfSoundStatus status)
 {
     if (self->music[i]->music && self->music[i]->is_playing) {
-            status = sfMusic_getStatus(self->music[i]->music);
-            if (status != sfPlaying)
-                self->music[i]->is_playing = 0;
-        }
+        status = sfMusic_getStatus(self->music[i]->music);
+        if (status != sfPlaying)
+            self->music[i]->is_playing = 0;
+    }
 }
 
 void update_sounds(SoundClass_t *self)

@@ -11,7 +11,7 @@
 
 static void constructor(void *ptr, va_list *args)
 {
-    SoundClass_t *self = (SoundClass_t *)ptr;
+    SoundClass_t *self = (SoundClass_t *) ptr;
 
     self->parent = va_arg(*args, GameClass_t *);
     self->effects = NULL;
@@ -25,7 +25,7 @@ static void constructor(void *ptr, va_list *args)
 
 static void destructor(void *ptr)
 {
-    SoundClass_t *self = (SoundClass_t *)ptr;
+    SoundClass_t *self = (SoundClass_t *) ptr;
     sound_effect_t *effect;
     int i;
 
@@ -75,4 +75,4 @@ const SoundClass_t sound_init = {
     .cleanup_sounds = cleanup_sounds,
 };
 
-const class_t *Sound = (const class_t *)&sound_init;
+const class_t *Sound = (const class_t *) &sound_init;

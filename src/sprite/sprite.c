@@ -11,7 +11,7 @@
 
 static void constructor(void *ptr, va_list *args)
 {
-    SpriteClass_t *self = (SpriteClass_t *)ptr;
+    SpriteClass_t *self = (SpriteClass_t *) ptr;
 
     self->parent = va_arg(*args, GameClass_t *);
     self->sprite = sfSprite_create();
@@ -25,7 +25,7 @@ static void constructor(void *ptr, va_list *args)
 
 static void destructor(void *ptr)
 {
-    SpriteClass_t *self = (SpriteClass_t *)ptr;
+    SpriteClass_t *self = (SpriteClass_t *) ptr;
 
     if (self->sprite)
         sfSprite_destroy(self->sprite);
@@ -66,4 +66,4 @@ const SpriteClass_t sprite_init = {
     .draw_sprite = draw_sprite,
 };
 
-const class_t *Sprite = (const class_t *)&sprite_init;
+const class_t *Sprite = (const class_t *) &sprite_init;

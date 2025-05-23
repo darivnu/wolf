@@ -6,19 +6,20 @@
 */
 
 #include <SFML/System/Types.h>
+#include "animation.h"
 #include <SFML/Window/VideoMode.h>
 #include "common.h"
+#include "hud.h"
 #include "input.h"
 #include "map.h"
 #include "oop.h"
 #include "player.h"
 #include "ray.h"
 #include "render.h"
-#include "texture.h"
-#include "animation.h"
-#include "sprite.h"
-#include "weapon.h"
 #include "sound.h"
+#include "sprite.h"
+#include "texture.h"
+#include "weapon.h"
 
 #ifndef INCLUDED_GAME_H
     #define INCLUDED_GAME_H
@@ -40,6 +41,7 @@ typedef struct game_aux {
     SpriteClass_t *sprite;
     WeaponClass_t *weapon;
     SoundClass_t *sound;
+    HUDClass_t *hud;
 
     /* --------------- */
     sfVideoMode mode;
@@ -67,8 +69,6 @@ void set_game_basic_components(GameClass_t *game);
 void game_loop(GameClass_t *game);
 void init_sound(GameClass_t *game);
 
-
-
 extern const class_t *Game;
 extern const class_t *Ray;
 extern const class_t *Player;
@@ -80,5 +80,6 @@ extern const class_t *Animation;
 extern const class_t *Sprite;
 extern const class_t *Weapon;
 extern const class_t *Sound;
+extern const class_t *HUD;
 
 #endif
