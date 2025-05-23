@@ -6,6 +6,8 @@
 */
 
 #include <SFML/Graphics/RectangleShape.h>
+#include <SFML/Graphics/CircleShape.h>
+#include <SFML/Graphics/VertexArray.h>
 #include "oop.h"
 #include "weapon.h"
 
@@ -30,6 +32,14 @@ typedef struct HUD_aux {
     float mana_regen_delay;
     float mana_regen_rate;
     spell_type_t current_spell;
+    /* minimap members */
+    sfRectangleShape *minimap_background;
+    sfSprite **minimap_walls;
+    sfCircleShape *minimap_player;
+    sfVertexArray *minimap_direction;
+    int minimap_wall_count;
+    float minimap_scale;
+    sfVector2f minimap_position;
     /* class methods */
     void (*init_hud)(HUDClass_t *);
     void (*render_hud)(HUDClass_t *);
@@ -41,6 +51,27 @@ typedef struct HUD_aux {
     void (*use_mana)(HUDClass_t *, float);
     void (*regenerate_mana)(HUDClass_t *, float);
     void (*switch_spell_hud)(HUDClass_t *, spell_type_t);
+    /* minimap methods */
+    void (*init_minimap)(HUDClass_t *);
+    void (*render_minimap)(HUDClass_t *);
+    void (*create_minimap_background)(HUDClass_t *);
+    void (*create_minimap_walls)(HUDClass_t *);
+    void (*create_minimap_player)(HUDClass_t *);
+    void (*update_minimap_player)(HUDClass_t *);
+    void (*update_minimap_direction)(HUDClass_t *);
+    void (*cleanup_minimap)(HUDClass_t *);
+    void (*update_wall_count)(HUDClass_t *, int *, int, int);
+    void (*create_wall_sprites)(HUDClass_t *);
+    void (*process_wall_cell)(HUDClass_t *, int, int, sfVector2f, int *);
+    void (*setup_wall_sprite_texture)(HUDClass_t *, int, int);
+    void (*setup_wall_sprite_position)(HUDClass_t *, int, int, int, sfVector2f);
+    void (*cleanup_minimap_background)(HUDClass_t *);
+    void (*cleanup_minimap_walls)(HUDClass_t *);
+    void (*cleanup_minimap_player)(HUDClass_t *);
+    void (*cleanup_minimap_direction)(HUDClass_t *);
+    void (*calculate_player_minimap_pos)(HUDClass_t *, sfVector2f *);
+    void (*calculate_direction_end_pos)(HUDClass_t *, sfVector2f, sfVector2f *);
+    void (*setup_direction_line)(HUDClass_t *, sfVector2f, sfVector2f);
 } HUDClass_t;
 
 void init_hud(HUDClass_t *);
@@ -54,5 +85,26 @@ void use_mana(HUDClass_t *, float);
 void regenerate_mana(HUDClass_t *, float);
 void switch_spell_hud(HUDClass_t *, spell_type_t);
 
+/* minimap functions */
+void init_minimap(HUDClass_t *);
+void render_minimap(HUDClass_t *);
+void create_minimap_background(HUDClass_t *);
+void create_minimap_walls(HUDClass_t *);
+void create_minimap_player(HUDClass_t *);
+void update_minimap_player(HUDClass_t *);
+void update_minimap_direction(HUDClass_t *);
+void cleanup_minimap(HUDClass_t *);
+void update_wall_count(HUDClass_t *, int *, int, int);
+void create_wall_sprites(HUDClass_t *);
+void process_wall_cell(HUDClass_t *, int, int, sfVector2f, int *);
+void setup_wall_sprite_texture(HUDClass_t *, int, int);
+void setup_wall_sprite_position(HUDClass_t *, int, int, int, sfVector2f);
+void cleanup_minimap_background(HUDClass_t *);
+void cleanup_minimap_walls(HUDClass_t *);
+void cleanup_minimap_player(HUDClass_t *);
+void cleanup_minimap_direction(HUDClass_t *);
+void calculate_player_minimap_pos(HUDClass_t *, sfVector2f *);
+void calculate_direction_end_pos(HUDClass_t *, sfVector2f, sfVector2f *);
+void setup_direction_line(HUDClass_t *, sfVector2f, sfVector2f);
 
 #endif

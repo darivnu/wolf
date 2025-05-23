@@ -9,6 +9,14 @@
 #include <SFML/Graphics.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System.h>
+#include <SFML/Graphics/CircleShape.h>
+#include <SFML/Graphics/Color.h>
+#include <SFML/Graphics/RectangleShape.h>
+#include <SFML/Graphics/RenderWindow.h>
+#include <SFML/Graphics/Sprite.h>
+#include <SFML/Graphics/Vertex.h>
+#include <SFML/Graphics/VertexArray.h>
+#include <SFML/System/Vector2.h>
 #include <SFML/Window.h>
 #include <SFML/Audio.h>
 #include <math.h>
@@ -26,7 +34,7 @@
     #define INFINITE          1e30
     #define WALL              1
     #define NOWALL            0
-    #define NUM_TEXTURES 1
+    #define NUM_TEXTURES 3
 
     /* BARS */
     #define BAR_SIZE 18
@@ -36,5 +44,12 @@
     #define BAR_WIDTH_MAX 123.0f
     #define DEFAULT_MANA_REG_DELAY 4.0f
     #define DEFAULT_MANA_REG_RATE 20.0f
+
+    /* MINIMAP */
+    #define MINIMAP_SIZE 120
+    #define MINIMAP_MARGIN 20
+    #define MINIMAP_CELL_SIZE 8
+    #define MINIMAP_PLAYER_SIZE 3
+    #define MINIMAP_DIR_LENGTH 8
 
 #endif

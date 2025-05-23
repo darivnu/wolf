@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2025
 ** wolf
 ** File description:
-** weapon_animation_functions
+** weapon_animation
 */
 
 #include "game.h"
@@ -42,7 +42,7 @@ switch (self->state) {
         case WEAPON_STATE_TRANSITIONING:
             self->handle_transition_state(self, idle_anim);
             break;
-    }   
+    }
 }
 
 void handle_weapon_input(WeaponClass_t *self)

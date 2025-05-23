@@ -25,6 +25,13 @@ static void constructor(void *ptr, va_list *args)
     self->mana_regen_delay = DEFAULT_MANA_REG_DELAY;
     self->mana_regen_rate = DEFAULT_MANA_REG_RATE;
     self->current_spell = SPELL_TYPE_BLUE;
+    self->minimap_background = NULL;
+    self->minimap_walls = NULL;
+    self->minimap_player = NULL;
+    self->minimap_direction = NULL;
+    self->minimap_wall_count = 0;
+    self->minimap_scale = 1.0f;
+    self->minimap_position = (sfVector2f){0, 0};
 }
 
 static void destructor(void *ptr)
@@ -35,6 +42,7 @@ static void destructor(void *ptr)
         sfRectangleShape_destroy(self->health_bar);
     if (self->mana_bar)
         sfRectangleShape_destroy(self->mana_bar);
+    self->cleanup_minimap(self);
 }
 
 void init_hud(HUDClass_t *self)
@@ -46,6 +54,7 @@ void init_hud(HUDClass_t *self)
     self->stats->set_visible(self->stats, 1);
     self->create_health_bar(self);
     self->create_mana_bar(self);
+    self->init_minimap(self);
 }
 
 void render_hud(HUDClass_t *self)
@@ -57,8 +66,8 @@ void render_hud(HUDClass_t *self)
     if (self->mana_bar)
         sfRenderWindow_drawRectangleShape(self->parent->render->window,
             self->mana_bar, NULL);
+    self->render_minimap(self);
 }
-
 
 void update_hud(HUDClass_t *self, float delta_time)
 {
@@ -66,6 +75,8 @@ void update_hud(HUDClass_t *self, float delta_time)
     if (self->last_mana_use_time >= self->mana_regen_delay) {
         self->regenerate_mana(self, delta_time);
     }
+    self->update_minimap_player(self);
+    self->update_minimap_direction(self);
 }
 
 void switch_spell_hud(HUDClass_t *self, spell_type_t spell_type)
@@ -98,6 +109,26 @@ const HUDClass_t hud_init = {
     .use_mana = use_mana,
     .regenerate_mana = regenerate_mana,
     .switch_spell_hud = switch_spell_hud,
+    .init_minimap = init_minimap,
+    .render_minimap = render_minimap,
+    .create_minimap_background = create_minimap_background,
+    .create_minimap_walls = create_minimap_walls,
+    .create_minimap_player = create_minimap_player,
+    .update_minimap_player = update_minimap_player,
+    .update_minimap_direction = update_minimap_direction,
+    .cleanup_minimap = cleanup_minimap,
+    .update_wall_count = update_wall_count,
+    .create_wall_sprites = create_wall_sprites,
+    .process_wall_cell = process_wall_cell,
+    .setup_wall_sprite_texture = setup_wall_sprite_texture,
+    .setup_wall_sprite_position = setup_wall_sprite_position,
+    .cleanup_minimap_background = cleanup_minimap_background,
+    .cleanup_minimap_walls = cleanup_minimap_walls,
+    .cleanup_minimap_player = cleanup_minimap_player,
+    .cleanup_minimap_direction = cleanup_minimap_direction,
+    // .calculate_player_minimap_pos = calculate_player_minimap_pos,
+    // .calculate_direction_end_pos = calculate_direction_end_pos,
+    // .setup_direction_line = setup_direction_line,
 };
 
 const class_t *HUD = (const class_t *) &hud_init;
