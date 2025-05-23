@@ -29,7 +29,7 @@ VERSION = 1.0
 # ARCHITECTURE = $(shell uname -m)
 
 # Source files
-SOURCES = $(wildcard src/*.c) $(wildcard src/**/*.c) 
+SOURCES = $(wildcard src/*.c) $(wildcard src/**/*.c)
 L_SOURCES = $(wildcard lib/*.c)
 OBJECTS = $(SOURCES:.c=.o)
 L_OBJECTS = $(L_SOURCES:.c=.o)

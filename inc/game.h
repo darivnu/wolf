@@ -7,6 +7,7 @@
 
 #include <SFML/System/Types.h>
 #include "animation.h"
+#include <SFML/Window/VideoMode.h>
 #include "common.h"
 #include "hud.h"
 #include "input.h"
@@ -43,6 +44,7 @@ typedef struct game_aux {
     HUDClass_t *hud;
 
     /* --------------- */
+    sfVideoMode mode;
     int screenX;
     int screenWidth;
     int screenHeight;

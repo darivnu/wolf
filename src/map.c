@@ -9,46 +9,63 @@
 
 static void constructor(void *ptr, va_list *args)
 {
-    MapClass_t *self = (MapClass_t *) ptr;
+    MapClass_t *self = (MapClass_t *)ptr;
 
     self->parent = va_arg(*args, GameClass_t *);
+    self->width = 0;
+    self->height = 0;
+    self->data = NULL;
 }
 
-// Temp map creation tool for testing
-void map_create(MapClass_t *map, int width, int height)
+static void destructor(void *ptr)
 {
-    map->width = width;
-    map->height = height;
+    MapClass_t *self = (MapClass_t *)ptr;
 
-    map->data = malloc(height * sizeof(int *));
-    for (int y = 0; y < height; y++) {
-        map->data[y] = malloc(width * sizeof(int));
+    self->map_cleanup(self);
+}
+
+void map_cleanup(MapClass_t *self)
+{
+    int y;
+
+    if (!self->data)
+        return;
+    for (y = 0; y < self->height; y++) {
+        if (self->data[y])
+            free(self->data[y]);
     }
+    free(self->data);
+    self->data = NULL;
+    self->width = 0;
+    self->height = 0;
+}
 
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            if (x == 0 || y == 0 || x == width - 1 || y == height - 1)
-                map->data[y][x] = WALL;
-            else
-                map->data[y][x] = NOWALL;
+int parse_map_header(FILE *file, int *width, int *height)
+{
+    if (fscanf(file, "%d %d", width, height) != 2)
+        return 84;
+    if (*width <= 0 || *height <= 0)
+        return 84;
+    if (*width > 1000 || *height > 1000)
+        return 84;
+    return 0;
+}
+
+int allocate_map_data(MapClass_t *self)
+{
+    int y;
+
+    self->data = malloc(self->height * sizeof(int *));
+    if (!self->data)
+        return 84;
+    for (y = 0; y < self->height; y++) {
+        self->data[y] = malloc(self->width * sizeof(int));
+        if (!self->data[y]) {
+            self->map_cleanup(self);
+            return 84;
         }
     }
-    map->data[0][0] = WALL;
-    map->data[0][1] = WALL;
-    map->data[0][2] = WALL;
-    map->data[0][3] = WALL;
-    map->data[5][5] = 3;
-    map->data[5][6] = 3;
-    map->data[5][7] = 2;
-
-    // Print the map to stdout
-    printf("Map (%d x %d):\n", width, height);
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            printf("%d ", map->data[y][x]);
-        }
-        printf("\n");
-    }
+    return 0;
 }
 
 int map_get_cell(MapClass_t *self, int x, int y)
@@ -64,9 +81,17 @@ const MapClass_t map_init = {
         ._size = sizeof map_init,
         ._name = "MapClass_t",
         ._constructor = constructor,
+        ._destructor = destructor,
     },
-    .map_create = map_create,
     .map_get_cell = map_get_cell,
+    .map_load_from_file = map_load_from_file,
+    .map_cleanup = map_cleanup,
+    .parse_map_header = parse_map_header,
+    .allocate_map_data = allocate_map_data,
+    .load_map_data = load_map_data,
+    .load_map_row = load_map_row,
+    .open_map_file = open_map_file,
+    .process_map_file = process_map_file,
 };
 
-const class_t *Map = (class_t *) &map_init;
+const class_t *Map = (class_t *)&map_init;

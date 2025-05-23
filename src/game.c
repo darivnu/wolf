@@ -25,7 +25,14 @@ static void constructor(void *ptr, va_list *args)
 
 void set_game_basic_components(GameClass_t *game)
 {
-    game->map->map_create(game->map, 10, 10);
+    int result = 0;
+
+    result =
+        game->map->map_load_from_file(game->map, "assets/maps/level1.txt");
+    if (result != 0) {
+        printf("Error loading map\n");
+        exit(84);
+    }
     game->player->posX = 5.0;
     game->player->posY = 5.0;
     game->player->dirX = 1.0;
