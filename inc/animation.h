@@ -16,7 +16,11 @@ typedef struct animation_aux AnimationClass_t;
 typedef struct animation_data animation_data_t;
 typedef struct animation_frame animation_frame_t;
 
-typedef enum { ANIM_LOOP, ANIM_ONCE, ANIM_PINGPONG } animation_type_t;
+typedef enum {
+    ANIM_LOOP,
+    ANIM_ONCE,
+    ANIM_PINGPONG,
+} animation_type_t;
 
 typedef enum {
     ANIM_STATE_IDLE,
