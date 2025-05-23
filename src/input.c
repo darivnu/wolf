@@ -53,7 +53,7 @@ void mouse_rot(InputClass_t *self)
     if (self->mouseDistance > self->mouseThreshold) {
         self->rotate = 1;
     }
-    if (self->mouseDistance < -self->mouseThreshold) {
+    if (self->mouseDistance < - self->mouseThreshold) {
         self->rotate = -1;
     }
     self->prevMousePos = self->currentMousePos;
