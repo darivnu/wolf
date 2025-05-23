@@ -28,7 +28,7 @@ typedef struct main_menu_s {
 } main_menu_t;
 
 main_menu_t *create_main_menu(void);
-void handle_main_menu(main_menu_t *menu, state_class_t *state, sfRenderWindow *win, sfEvent *event);
+void handle_main_menu(main_menu_t *menu, StateClass_t *state, sfRenderWindow *win, sfEvent *event);
 void render_main_menu(main_menu_t *menu, sfRenderWindow *win);
 void destroy_main_menu(main_menu_t *menu);
 void launch_game(sfRenderWindow *window);

@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void handle_main_menu(main_menu_t *menu, state_class_t *state,
+void handle_main_menu(main_menu_t *menu, StateClass_t *state,
     sfRenderWindow *win, sfEvent *event)
 {
     if (event->type == sfEvtMouseButtonPressed

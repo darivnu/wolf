@@ -4,33 +4,34 @@
 ** File description:
 ** state
 */
-
-#include "../inc/state.h"
 #include <stdlib.h>
+#include "../inc/state.h"
 
-static void set_game_state(state_class_t *state, game_state_e new_state)
+static void set_game_state(StateClass_t *state, game_state_t new_state)
 {
     if (state)
-        state->current_state = new_state;
+        state->current = new_state;
 }
 
-static game_state_e get_game_state(state_class_t *state)
+static game_state_t get_game_state(StateClass_t *state)
 {
-    return state ? state->current_state : GAME_MENU;
+    if (!state)
+        return GAME_MENU;
+    return state->current;
 }
 
-state_class_t *create_state_manager(void)
+StateClass_t *create_state_manager(void)
 {
-    state_class_t *manager = malloc(sizeof(state_class_t));
-    if (!manager)
+    StateClass_t *state = malloc(sizeof(StateClass_t));
+    if (!state)
         return NULL;
-    manager->current_state = GAME_MENU;
-    manager->set_state = &set_game_state;
-    manager->get_state = &get_game_state;
-    return manager;
+    state->current = GAME_MENU;
+    state->set_state = &set_game_state;
+    state->get_state = &get_game_state;
+    return state;
 }
 
-void destroy_state_manager(state_class_t *state)
+void destroy_state_manager(StateClass_t *state)
 {
     if (state)
         free(state);

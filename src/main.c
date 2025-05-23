@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "../inc/game.h"
+#include "../inc/map.h"
 
 int init_game_components(GameClass_t *game)
 {
@@ -81,19 +82,42 @@ int main(void)
     GameClass_t *game = new_class(Game);
     int status = 0;
 
-    if (!game) {
+    if (!game)
         return 84;
-    }
-    status = init_game_components(game);
+
+    status = game->init_game_components(game);
     if (status != 0) {
         destroy_class(game);
         return status;
     }
+
+    // ✅ Cargar el mapa en formato plano
+    map_t *raw_map = load_map("assets/maps/level1.map");
+    if (!raw_map) {
+        destroy_class(game);
+        return 84;
+    }
+
+    // ✅ Cargar el mapa dentro de tu clase MapClass_t
+    if (!game->map || !game->map->load_from_data) {
+        destroy_class(game);
+        return 84;
+    }
+
+    if (game->map->load_from_data(game->map, raw_map) != 0) {
+        destroy_class(game);
+        return 84;
+    }
+
+    // ▶️ Bucle principal del juego
     game->game_loop(game);
-    if (game->render->zBuffer)
+
+    // 🧹 Limpieza
+    if (game->render && game->render->zBuffer)
         free(game->render->zBuffer);
     if (game->clock)
         sfClock_destroy(game->clock);
     destroy_class(game);
+
     return 0;
 }
