@@ -42,7 +42,7 @@ typedef struct texture_aux {
     sfImage *floorImage, *ceilingImage;
     sfUint8 *buffer;
     sfImage *fcImage;
-    sfTexture * fcTexture;
+    sfTexture *fcTexture;
     sfSprite *fcSprite;
     int position;
     /* class methods */

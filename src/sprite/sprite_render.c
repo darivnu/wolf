@@ -12,8 +12,8 @@ void update_sprite(SpriteClass_t *self, float delta_time)
     if (!self->current_animation || !self->current_animation->is_playing)
         return;
     sfSprite_setTextureRect(self->sprite,
-        self->current_animation->frames[
-            self->current_animation->current_frame].rect);
+        self->current_animation->frames[self->current_animation->current_frame]
+            .rect);
 }
 
 void draw_sprite(SpriteClass_t *self)

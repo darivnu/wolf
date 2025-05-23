@@ -62,11 +62,11 @@ void render_hud(HUDClass_t *self)
 {
     self->stats->draw_sprite(self->stats);
     if (self->health_bar)
-        sfRenderWindow_drawRectangleShape(self->parent->render->window,
-            self->health_bar, NULL);
+        sfRenderWindow_drawRectangleShape(
+            self->parent->render->window, self->health_bar, NULL);
     if (self->mana_bar)
-        sfRenderWindow_drawRectangleShape(self->parent->render->window,
-            self->mana_bar, NULL);
+        sfRenderWindow_drawRectangleShape(
+            self->parent->render->window, self->mana_bar, NULL);
     self->render_minimap(self);
     if (self->wizard)
         self->wizard->draw_sprite(self->wizard);
@@ -129,6 +129,9 @@ const HUDClass_t hud_init = {
     .cleanup_minimap_walls = cleanup_minimap_walls,
     .cleanup_minimap_player = cleanup_minimap_player,
     .cleanup_minimap_direction = cleanup_minimap_direction,
+    .calculate_player_minimap_pos = calculate_player_minimap_pos,
+    .calculate_direction_end_pos = calculate_direction_end_pos,
+    .setup_direction_line = setup_direction_line,
     .set_wizard_portrait_anim = set_wizard_portrait_anim,
     .set_wizard_portrait_sprite = set_wizard_portrait_sprite,
 };

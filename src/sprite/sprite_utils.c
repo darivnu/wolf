@@ -29,7 +29,7 @@ void set_animation(SpriteClass_t *self, animation_data_t *animation)
 {
     self->current_animation = animation;
     if (animation && animation->frame_count > 0) {
-        sfSprite_setTextureRect(self->sprite,
-            animation->frames[animation->current_frame].rect);
+        sfSprite_setTextureRect(
+            self->sprite, animation->frames[animation->current_frame].rect);
     }
 }

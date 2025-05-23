@@ -64,8 +64,7 @@ void update_game(GameClass_t *game)
     game->weapon->handle_input(game->weapon);
     game->weapon->update(game->weapon, game->deltaTime);
     game->sound->update_sounds(game->sound);
-    game->sound->update_listener_position(game->sound, 
-        player_pos);
+    game->sound->update_listener_position(game->sound, player_pos);
     game->hud->update_hud(game->hud, game->deltaTime);
     game->hud->wizard->update_sprite(game->hud->wizard, game->deltaTime);
 }

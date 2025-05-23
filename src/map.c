@@ -40,7 +40,7 @@ void map_create(MapClass_t *map, int width, int height)
     map->data[5][5] = 3;
     map->data[5][6] = 3;
     map->data[5][7] = 2;
-    
+
     // Print the map to stdout
     printf("Map (%d x %d):\n", width, height);
     for (int y = 0; y < height; y++) {

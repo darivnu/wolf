@@ -17,13 +17,12 @@ void update_wall_count(HUDClass_t *self, int *wall_count, int x, int y)
     }
 }
 
-void setup_wall_sprite_texture(HUDClass_t *self, int wall_index,
-    int wall_type)
+void setup_wall_sprite_texture(HUDClass_t *self, int wall_index, int wall_type)
 {
     int texture_index = wall_type - 1;
 
-    if (texture_index >= 0 && texture_index < NUM_TEXTURES &&
-        self->parent->texture->wallTextures[texture_index]) {
+    if (texture_index >= 0 && texture_index < NUM_TEXTURES
+        && self->parent->texture->wallTextures[texture_index]) {
         sfSprite_setTexture(self->minimap_walls[wall_index],
             self->parent->texture->wallTextures[texture_index], sfTrue);
     } else if (self->parent->texture->wallTextures[0]) {
@@ -33,15 +32,14 @@ void setup_wall_sprite_texture(HUDClass_t *self, int wall_index,
 }
 
 void setup_wall_sprite_position(HUDClass_t *self, int wall_index,
-    int x, int y, sfVector2f wall_scale)
+    sfVector2i position, sfVector2f wall_scale)
 {
     sfVector2f wall_pos;
 
-    wall_pos.x = self->minimap_position.x +
-        (x * MINIMAP_CELL_SIZE * self->minimap_scale);
-    wall_pos.y = self->minimap_position.y +
-        (y * MINIMAP_CELL_SIZE * self->minimap_scale);
-
+    wall_pos.x = self->minimap_position.x
+        + (position.x * MINIMAP_CELL_SIZE * self->minimap_scale);
+    wall_pos.y = self->minimap_position.y
+        + (position.y * MINIMAP_CELL_SIZE * self->minimap_scale);
     sfSprite_setScale(self->minimap_walls[wall_index], wall_scale);
     sfSprite_setPosition(self->minimap_walls[wall_index], wall_pos);
 }

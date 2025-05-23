@@ -6,19 +6,19 @@
 */
 
 #include <SFML/System/Types.h>
+#include "animation.h"
 #include "common.h"
+#include "hud.h"
 #include "input.h"
 #include "map.h"
 #include "oop.h"
 #include "player.h"
 #include "ray.h"
 #include "render.h"
-#include "texture.h"
-#include "animation.h"
-#include "sprite.h"
-#include "weapon.h"
 #include "sound.h"
-#include "hud.h"
+#include "sprite.h"
+#include "texture.h"
+#include "weapon.h"
 
 #ifndef INCLUDED_GAME_H
     #define INCLUDED_GAME_H
@@ -66,8 +66,6 @@ void render_game(GameClass_t *game);
 void set_game_basic_components(GameClass_t *game);
 void game_loop(GameClass_t *game);
 void init_sound(GameClass_t *game);
-
-
 
 extern const class_t *Game;
 extern const class_t *Ray;

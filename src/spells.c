@@ -32,4 +32,3 @@ void handle_spell_switch(WeaponClass_t *self)
             self->switch_spell(self, SPELL_TYPE_ORANGE);
     }
 }
-

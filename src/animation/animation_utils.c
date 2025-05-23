@@ -9,8 +9,8 @@
 #include <string.h>
 #include "game.h"
 
-void init_animation_data(animation_data_t *anim, const char *name,
-    animation_type_t type)
+void init_animation_data(
+    animation_data_t *anim, const char *name, animation_type_t type)
 {
     anim->name = strdup(name);
     anim->type = type;

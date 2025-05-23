@@ -7,8 +7,8 @@
 
 #include "game.h"
 
-void set_sound_3d_position(SoundClass_t *self, const char *name,
-    sound_position_t pos)
+void set_sound_3d_position(
+    SoundClass_t *self, const char *name, sound_position_t pos)
 {
     sound_effect_t *effect;
 

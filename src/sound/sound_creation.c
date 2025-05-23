@@ -9,7 +9,6 @@
 #include <string.h>
 #include "game.h"
 
-
 void init_music(sound_music_t *music, const char *name)
 {
     music->name = strdup(name);
@@ -24,8 +23,8 @@ sound_effect_t *allocate_effect_memory(SoundClass_t *self, const char *name)
     sound_effect_t *effect;
     void *temp;
 
-    temp = realloc(self->effects,
-        (self->effect_count + 1) * sizeof(sound_effect_t *));
+    temp = realloc(
+        self->effects, (self->effect_count + 1) * sizeof(sound_effect_t *));
     if (!temp)
         return NULL;
     self->effects = temp;
@@ -51,8 +50,8 @@ int setup_sound_buffer(sound_effect_t *effect, const char *filepath)
     return 1;
 }
 
-sound_effect_t *create_sound_effect(SoundClass_t *self, const char *name,
-    const char *filepath)
+sound_effect_t *create_sound_effect(
+    SoundClass_t *self, const char *name, const char *filepath)
 {
     sound_effect_t *effect;
 
@@ -68,14 +67,14 @@ sound_effect_t *create_sound_effect(SoundClass_t *self, const char *name,
     return effect;
 }
 
-sound_music_t *create_music(SoundClass_t *self, const char *name,
-    const char *filepath)
+sound_music_t *create_music(
+    SoundClass_t *self, const char *name, const char *filepath)
 {
     sound_music_t *music;
     void *temp;
 
-    temp = realloc(self->music,
-        (self->music_count + 1) * sizeof(sound_music_t *));
+    temp = realloc(
+        self->music, (self->music_count + 1) * sizeof(sound_music_t *));
     if (!temp)
         return NULL;
     self->music = temp;

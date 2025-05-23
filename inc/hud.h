@@ -5,8 +5,8 @@
 ** hud
 */
 
-#include <SFML/Graphics/RectangleShape.h>
 #include <SFML/Graphics/CircleShape.h>
+#include <SFML/Graphics/RectangleShape.h>
 #include <SFML/Graphics/VertexArray.h>
 #include "oop.h"
 #include "weapon.h"
@@ -64,15 +64,17 @@ typedef struct HUD_aux {
     void (*cleanup_minimap)(HUDClass_t *);
     void (*update_wall_count)(HUDClass_t *, int *, int, int);
     void (*create_wall_sprites)(HUDClass_t *);
-    void (*process_wall_cell)(HUDClass_t *, int, int, sfVector2f, int *);
+    void (*process_wall_cell)(HUDClass_t *, sfVector2i, sfVector2f, int *);
     void (*setup_wall_sprite_texture)(HUDClass_t *, int, int);
-    void (*setup_wall_sprite_position)(HUDClass_t *, int, int, int, sfVector2f);
+    void (*setup_wall_sprite_position)(
+        HUDClass_t *, int, sfVector2i, sfVector2f);
     void (*cleanup_minimap_background)(HUDClass_t *);
     void (*cleanup_minimap_walls)(HUDClass_t *);
     void (*cleanup_minimap_player)(HUDClass_t *);
     void (*cleanup_minimap_direction)(HUDClass_t *);
     void (*calculate_player_minimap_pos)(HUDClass_t *, sfVector2f *);
-    void (*calculate_direction_end_pos)(HUDClass_t *, sfVector2f, sfVector2f *);
+    void (*calculate_direction_end_pos)(
+        HUDClass_t *, sfVector2f, sfVector2f *);
     void (*setup_direction_line)(HUDClass_t *, sfVector2f, sfVector2f);
     void (*set_wizard_portrait_anim)(HUDClass_t *);
     void (*set_wizard_portrait_sprite)(HUDClass_t *);
@@ -100,9 +102,9 @@ void update_minimap_direction(HUDClass_t *);
 void cleanup_minimap(HUDClass_t *);
 void update_wall_count(HUDClass_t *, int *, int, int);
 void create_wall_sprites(HUDClass_t *);
-void process_wall_cell(HUDClass_t *, int, int, sfVector2f, int *);
+void process_wall_cell(HUDClass_t *, sfVector2i, sfVector2f, int *);
 void setup_wall_sprite_texture(HUDClass_t *, int, int);
-void setup_wall_sprite_position(HUDClass_t *, int, int, int, sfVector2f);
+void setup_wall_sprite_position(HUDClass_t *, int, sfVector2i, sfVector2f);
 void cleanup_minimap_background(HUDClass_t *);
 void cleanup_minimap_walls(HUDClass_t *);
 void cleanup_minimap_player(HUDClass_t *);

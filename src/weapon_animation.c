@@ -10,8 +10,8 @@
 
 void handle_firing_state(WeaponClass_t *self, animation_data_t *fire_anim)
 {
-    if (fire_anim->current_frame >= fire_anim->frame_count - 1 &&
-        !fire_anim->is_playing) {
+    if (fire_anim->current_frame >= fire_anim->frame_count - 1
+        && !fire_anim->is_playing) {
         self->state = WEAPON_STATE_TRANSITIONING;
         self->transition_timer = 0.04f;
     }
@@ -30,9 +30,10 @@ void handle_transition_state(WeaponClass_t *self, animation_data_t *idle_anim)
     }
 }
 
-static void handle_weapon_switch(WeaponClass_t *self, animation_data_t *idle_anim, animation_data_t *fire_anim)
+static void handle_weapon_switch(WeaponClass_t *self,
+    animation_data_t *idle_anim, animation_data_t *fire_anim)
 {
-switch (self->state) {
+    switch (self->state) {
         case WEAPON_STATE_IDLE:
             self->handle_idle_state(self, idle_anim, fire_anim);
             break;

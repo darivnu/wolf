@@ -11,7 +11,7 @@
 
 static void constructor(void *ptr, va_list *args)
 {
-    AnimationClass_t *self = (AnimationClass_t *)ptr;
+    AnimationClass_t *self = (AnimationClass_t *) ptr;
 
     self->parent = va_arg(*args, GameClass_t *);
     self->animations = NULL;
@@ -20,7 +20,7 @@ static void constructor(void *ptr, va_list *args)
 
 static void destructor(void *ptr)
 {
-    AnimationClass_t *self = (AnimationClass_t *)ptr;
+    AnimationClass_t *self = (AnimationClass_t *) ptr;
     animation_data_t *anim;
     int i;
 
@@ -36,8 +36,8 @@ static void destructor(void *ptr)
         free(self->animations);
 }
 
-animation_data_t *create_animation(AnimationClass_t *self, const char *name,
-    animation_type_t type)
+animation_data_t *create_animation(
+    AnimationClass_t *self, const char *name, animation_type_t type)
 {
     animation_data_t *anim;
     void *temp;
@@ -61,8 +61,8 @@ void add_frame(AnimationClass_t *self, animation_data_t *anim, float duration,
 {
     void *temp;
 
-    temp = realloc(anim->frames,
-        (anim->frame_count + 1) * sizeof(animation_frame_t));
+    temp = realloc(
+        anim->frames, (anim->frame_count + 1) * sizeof(animation_frame_t));
     if (!temp)
         return;
     anim->frames = temp;
@@ -88,4 +88,4 @@ const AnimationClass_t animation_init = {
     .get_animation = get_animation,
 };
 
-const class_t *Animation = (const class_t *)&animation_init;
+const class_t *Animation = (const class_t *) &animation_init;

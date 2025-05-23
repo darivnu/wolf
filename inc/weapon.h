@@ -24,7 +24,7 @@ typedef enum {
 
 typedef enum {
     SPELL_TYPE_BLUE,
-    SPELL_TYPE_ORANGE
+    SPELL_TYPE_ORANGE,
 } spell_type_t;
 
 typedef struct weapon_aux {
@@ -44,8 +44,8 @@ typedef struct weapon_aux {
     void (*setup_weapon_sprite)(WeaponClass_t *, int);
     void (*update)(WeaponClass_t *, float);
     void (*handle_input)(WeaponClass_t *);
-    void (*handle_idle_state)(WeaponClass_t *, animation_data_t *,
-        animation_data_t *);
+    void (*handle_idle_state)(
+        WeaponClass_t *, animation_data_t *, animation_data_t *);
     void (*handle_firing_state)(WeaponClass_t *, animation_data_t *);
     void (*handle_transition_state)(WeaponClass_t *, animation_data_t *);
     void (*render)(WeaponClass_t *);
@@ -60,8 +60,8 @@ void create_fire_animation(WeaponClass_t *, int, int);
 void setup_weapon_sprite(WeaponClass_t *, int);
 void update_weapon(WeaponClass_t *, float);
 void handle_weapon_input(WeaponClass_t *);
-void handle_idle_state(WeaponClass_t *, animation_data_t *,
-    animation_data_t *);
+void handle_idle_state(
+    WeaponClass_t *, animation_data_t *, animation_data_t *);
 void handle_firing_state(WeaponClass_t *, animation_data_t *);
 void handle_transition_state(WeaponClass_t *, animation_data_t *);
 void render_weapon(WeaponClass_t *);
