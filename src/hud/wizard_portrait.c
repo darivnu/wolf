@@ -23,7 +23,7 @@ void set_wizard_portrait_anim(HUDClass_t *self)
 void set_wizard_portrait_sprite(HUDClass_t *self)
 {
     self->wizard = new_class(Sprite, self->parent);
-    self->wizard->load_texture(self->wizard, "assets/sprites/wizard4.png");
+    self->wizard->load_texture(self->wizard, "assets/sprites/wizard_female.png");
     self->wizard->set_position(self->wizard, -0.0f, -10.0f);
     self->wizard->set_scale(self->wizard, 0.13f, 0.13f);
     self->wizard->set_visible(self->wizard, 1);
