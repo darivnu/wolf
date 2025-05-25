@@ -20,15 +20,15 @@ static const char *get_button_texture_path(button_type_t type, int is_hover)
         "assets/menu/play_btn.png",
         "assets/menu/settings_btn.png",
         "assets/menu/exit_btn.png",
-        "assets/menu/button_back.png",
-        "assets/menu/button_apply.png"
+        "assets/menu/return_btn.png",
+        "assets/menu/apply_btn.png",
     };
     static const char *hover_paths[] = {
-        "assets/menu/button_play_hover.png",
-        "assets/menu/button_settings_hover.png",
-        "assets/menu/button_exit_hover.png",
-        "assets/menu/button_back_hover.png",
-        "assets/menu/button_apply_hover.png"
+        "assets/menu/play_btn.png",
+        "assets/menu/settings_btn.png",
+        "assets/menu/exit_btn.png",
+        "assets/menu/return_btn.png",
+        "assets/menu/apply_btn.png",
     };
 
     if (type >= BUTTON_COUNT)

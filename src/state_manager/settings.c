@@ -89,12 +89,14 @@ void init_settings(StateManagerClass_t *self)
     self->buttons[BUTTON_APPLY] =
         self->create_button(self, BUTTON_APPLY,
             center_x + self->parent->screenWidth * 0.07f, button_y);
+    self->initialize_volume_values(self);
 }
 
 void update_settings(StateManagerClass_t *self, float delta_time)
 {
     self->update_button_hover(self, self->buttons[BUTTON_BACK]);
     self->update_button_hover(self, self->buttons[BUTTON_APPLY]);
+    self->handle_volume_bar_interaction(self);
 }
 
 void render_settings(StateManagerClass_t *self)
@@ -115,20 +117,9 @@ void render_settings(StateManagerClass_t *self)
                 self->parent->render->window, self->volume_bars[i], NULL);
         }
     }
+    self->render_volume_percentage_texts(self);
     self->render_button(self, self->buttons[BUTTON_BACK]);
     self->render_button(self, self->buttons[BUTTON_APPLY]);
-}
-
-static void apply_volume_settings(StateManagerClass_t *self)
-{
-    if (self->parent->sound) {
-        self->parent->sound->set_master_volume(
-            self->parent->sound, self->volume_values[0] / 100.0f);
-        self->parent->sound->set_effect_volume(
-            self->parent->sound, self->volume_values[1] / 100.0f);
-        self->parent->sound->set_music_volume_global(
-            self->parent->sound, self->volume_values[2] / 100.0f);
-    }
 }
 
 void handle_settings_input(StateManagerClass_t *self)
@@ -137,6 +128,6 @@ void handle_settings_input(StateManagerClass_t *self)
         self->transition_to_state(self, GAME_MENU);
     }
     if (self->is_button_clicked(self, self->buttons[BUTTON_APPLY])) {
-        apply_volume_settings(self);
+        self->transition_to_state(self, GAME_MENU);
     }
 }

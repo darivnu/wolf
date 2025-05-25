@@ -60,6 +60,7 @@ typedef struct state_manager_aux {
     sfSprite *settings_background;
     sfTexture *settings_bg_texture;
     sfText *volume_labels[3];
+    sfText *volume_percentage_texts[3];
     sfRectangleShape *volume_bars[3];
     float volume_values[3];
     /* class methods */
@@ -88,6 +89,15 @@ typedef struct state_manager_aux {
     /* mouse cursor management */
     void (*set_cursor_visible)(StateManagerClass_t *, int);
     void (*center_mouse_cursor)(StateManagerClass_t *);
+    /* volume control management */
+    void (*handle_volume_bar_interaction)(StateManagerClass_t *);
+    void (*update_volume_bar_visual)(StateManagerClass_t *, int);
+    void (*apply_volume_change)(StateManagerClass_t *, int);
+    void (*initialize_volume_values)(StateManagerClass_t *);
+    void (*update_volume_percentage_display)(StateManagerClass_t *, int);
+    void (*initialize_volume_percentage_texts)(StateManagerClass_t *);
+    void (*render_volume_percentage_texts)(StateManagerClass_t *);
+    void (*cleanup_volume_percentage_texts)(StateManagerClass_t *);
 } StateManagerClass_t;
 
 void init_state_manager(StateManagerClass_t *);
@@ -119,6 +129,18 @@ void cleanup_buttons(StateManagerClass_t *);
 /* mouse cursor management */
 void set_cursor_visible(StateManagerClass_t *, int);
 void center_mouse_cursor(StateManagerClass_t *);
+
+/* volume control management */
+void handle_volume_bar_interaction(StateManagerClass_t *);
+void update_volume_bar_visual(StateManagerClass_t *, int);
+void apply_volume_change(StateManagerClass_t *, int);
+void initialize_volume_values(StateManagerClass_t *);
+
+/* volume display functions */
+void update_volume_percentage_display(StateManagerClass_t *, int);
+void initialize_volume_percentage_texts(StateManagerClass_t *);
+void render_volume_percentage_texts(StateManagerClass_t *);
+void cleanup_volume_percentage_texts(StateManagerClass_t *);
 
 /* texture fallback functions */
 sfTexture *create_fallback_button_texture(button_type_t, int);

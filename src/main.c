@@ -13,8 +13,8 @@
 
 int init_game_components(GameClass_t *game)
 {
-    game->screenWidth = 800;
-    game->screenHeight = 600;
+    game->screenWidth = 1920;
+    game->screenHeight = 1080;
     game->mode = (sfVideoMode){game->screenWidth, game->screenHeight, 32};
     game->render->window =
         sfRenderWindow_create(game->mode, "Wolf3D", sfClose, NULL);

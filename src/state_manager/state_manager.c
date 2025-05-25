@@ -26,6 +26,7 @@ static void constructor(void *ptr, va_list *args)
         self->buttons[i] = NULL;
     for (i = 0; i < 3; i++) {
         self->volume_labels[i] = NULL;
+        self->volume_percentage_texts[i] = NULL;
         self->volume_bars[i] = NULL;
         self->volume_values[i] = 50.0f;
     }
@@ -50,6 +51,8 @@ static void destructor(void *ptr)
     for (i = 0; i < 3; i++) {
         if (self->volume_labels[i])
             sfText_destroy(self->volume_labels[i]);
+        if (self->volume_percentage_texts[i])
+            sfText_destroy(self->volume_percentage_texts[i]);
         if (self->volume_bars[i])
             sfRectangleShape_destroy(self->volume_bars[i]);
     }
@@ -160,6 +163,14 @@ const StateManagerClass_t state_manager_init = {
     .cleanup_buttons = cleanup_buttons,
     .set_cursor_visible = set_cursor_visible,
     .center_mouse_cursor = center_mouse_cursor,
+    .handle_volume_bar_interaction = handle_volume_bar_interaction,
+    .update_volume_bar_visual = update_volume_bar_visual,
+    .apply_volume_change = apply_volume_change,
+    .initialize_volume_values = initialize_volume_values,
+    .update_volume_percentage_display = update_volume_percentage_display,
+    .initialize_volume_percentage_texts = initialize_volume_percentage_texts,
+    .render_volume_percentage_texts = render_volume_percentage_texts,
+    .cleanup_volume_percentage_texts = cleanup_volume_percentage_texts,
 };
 
 const class_t *StateManager = (const class_t *) &state_manager_init;
