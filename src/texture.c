@@ -19,6 +19,20 @@ static void constructor(void *ptr, va_list *args)
     self->load_textures(self);
 }
 
+static void load_trophyes(TextureClass_t *self)
+{
+    self->wallTextures[5] =
+        sfTexture_createFromFile("assets/textures/Trophy1.png", NULL);
+    self->wallTextures[6] =
+        sfTexture_createFromFile("assets/textures/Trophy2.png", NULL);
+    self->wallTextures[7] =
+        sfTexture_createFromFile("assets/textures/Trophy3.png", NULL);
+    self->wallTextures[8] =
+        sfTexture_createFromFile("assets/textures/Trophy4.png", NULL);
+    self->wallTextures[9] =
+        sfTexture_createFromFile("assets/textures/Trophy6.png", NULL);
+}
+
 void load_textures(TextureClass_t *self)
 {
     self->wallTextures = malloc(sizeof(sfTexture *) * NUM_TEXTURES);
@@ -27,11 +41,16 @@ void load_textures(TextureClass_t *self)
     self->ceilingTexture =
         sfTexture_createFromFile("assets/textures/str_stonegen1.png", NULL);
     self->wallTextures[0] =
-        sfTexture_createFromFile("assets/textures/bendetti.png", NULL);
+        sfTexture_createFromFile("assets/textures/topHwR.png", NULL);
     self->wallTextures[1] =
-        sfTexture_createFromFile("assets/textures/str_metalflr1.png", NULL);
+        sfTexture_createFromFile("assets/textures/Arch3_wood.png", NULL);
     self->wallTextures[2] =
-        sfTexture_createFromFile("assets/textures/str_metalpan8.png", NULL);
+        sfTexture_createFromFile("assets/textures/chesswall.png", NULL);
+    self->wallTextures[3] =
+        sfTexture_createFromFile("assets/textures/Win3_t1.png", NULL);
+    self->wallTextures[4] =
+        sfTexture_createFromFile("assets/textures/Win8_T2T.png", NULL);
+    load_trophyes(self);
     self->wallSprite = sfSprite_create();
     self->textureSize = 256;
 }
