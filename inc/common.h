@@ -34,7 +34,7 @@
     #define INFINITE     1e30
     #define WALL         1
     #define NOWALL       0
-    #define NUM_TEXTURES 11
+    #define NUM_TEXTURES 12
 
     /* BARS */
     #define BAR_SIZE               18
