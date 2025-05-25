@@ -6,7 +6,7 @@
 */
 
 #include <string.h>
-#include "game.h"
+#include "../inc/game.h"
 
 void init_sound_effect(sound_effect_t *effect, const char *name)
 {
@@ -25,9 +25,9 @@ void init_sound_effect(sound_effect_t *effect, const char *name)
 void init_sound(GameClass_t *game)
 {
     game->sound->create_music(
-        game->sound, "background", "assets/music/music1.mp3");
+        game->sound, "background", "assets/music/music1.ogg");
     game->sound->create_sound_effect(
-        game->sound, "footstep", "assets/sounds/footsteps.mp3");
+        game->sound, "footstep", "assets/sounds/footsteps.ogg");
     game->sound->create_sound_effect(
         game->sound, "weapon_fire_blue", "assets/sounds/blue_spell1.wav");
     game->sound->create_sound_effect(
