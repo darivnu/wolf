@@ -21,12 +21,16 @@ static void constructor(void *ptr, va_list *args)
     self->weapon = new_class(Weapon, self);
     self->sound = new_class(Sound, self);
     self->hud = new_class(HUD, self);
+    self->state_manager = new_class(StateManager, self);
+    self->game_components_initialized = 0;
 }
 
 void set_game_basic_components(GameClass_t *game)
 {
     int result = 0;
 
+    if (game->game_components_initialized)
+        return;
     result =
         game->map->map_load_from_file(game->map, "assets/maps/level1.txt");
     if (result != 0) {
@@ -39,6 +43,7 @@ void set_game_basic_components(GameClass_t *game)
     game->player->dirY = 0.0;
     game->player->init_player(game->player);
     game->init_sound(game);
+    game->game_components_initialized = 1;
 }
 
 void game_loop(GameClass_t *game)
@@ -65,6 +70,7 @@ static void destructor(void *ptr)
     destroy_class(self->weapon);
     destroy_class(self->sound);
     destroy_class(self->hud);
+    destroy_class(self->state_manager);
 }
 
 const GameClass_t game_init = {

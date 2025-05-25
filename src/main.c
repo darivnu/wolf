@@ -25,10 +25,8 @@ int init_game_components(GameClass_t *game)
     game->render->zBuffer = malloc(sizeof(double) * game->screenWidth);
     if (!game->render->zBuffer)
         return 84;
-    game->set_game_basic_components(game);
     game->clock = sfClock_create();
-    game->weapon->init_weapon(game->weapon);
-    game->hud->init_hud(game->hud);
+    game->state_manager->init_state_manager(game->state_manager);
     return 0;
 }
 
@@ -41,19 +39,29 @@ void handle_events(GameClass_t *game)
             sfRenderWindow_close(game->render->window);
         }
         if (event.type == sfEvtKeyPressed && event.key.code == sfKeyEscape) {
-            sfRenderWindow_close(game->render->window);
+            if (game->state_manager->current_state == GAME_PLAYING) {
+                game->state_manager->transition_to_state(
+                    game->state_manager, GAME_MENU);
+            } else {
+                sfRenderWindow_close(game->render->window);
+            }
         }
     }
+    game->state_manager->handle_state_input(game->state_manager);
 }
 
 void update_game(GameClass_t *game)
 {
     sfTime elapsed = sfClock_getElapsedTime(game->clock);
-    listener_data_t player_pos = {game->player->posX, game->player->posY,
-        game->player->dirX, game->player->dirY};
+    listener_data_t player_pos;
 
     game->deltaTime = sfTime_asSeconds(elapsed);
     sfClock_restart(game->clock);
+    game->state_manager->update_state(game->state_manager, game->deltaTime);
+    if (game->state_manager->current_state != GAME_PLAYING)
+        return;
+    player_pos = (listener_data_t){game->player->posX, game->player->posY,
+        game->player->dirX, game->player->dirY};
     game->input->forward = 0.0;
     game->input->strafe = 0.0;
     game->input->rotate = 0.0;
@@ -72,10 +80,14 @@ void update_game(GameClass_t *game)
 void render_game(GameClass_t *game)
 {
     sfRenderWindow_clear(game->render->window, sfBlack);
-    game->texture->draw_floor_ceiling(game->texture);
-    game->render->render_walls(game->render);
-    game->weapon->render(game->weapon);
-    game->hud->render_hud(game->hud);
+    if (game->state_manager->current_state == GAME_PLAYING) {
+        game->texture->draw_floor_ceiling(game->texture);
+        game->render->render_walls(game->render);
+        game->weapon->render(game->weapon);
+        game->hud->render_hud(game->hud);
+    } else {
+        game->state_manager->render_state(game->state_manager);
+    }
     sfRenderWindow_display(game->render->window);
 }
 

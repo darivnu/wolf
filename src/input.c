@@ -27,10 +27,6 @@ void init_input_defaults(InputClass_t *self)
 
 void get_input(InputClass_t *self)
 {
-    sfRenderWindow_setMouseCursorVisible(
-        self->parent->render->window, sfFalse);
-    sfWindow_setMouseCursorGrabbed(
-        (sfWindow *) self->parent->render->window, sfTrue);
     if (sfKeyboard_isKeyPressed(sfKeyW))
         self->forward = 1.0;
     if (sfKeyboard_isKeyPressed(sfKeyS))

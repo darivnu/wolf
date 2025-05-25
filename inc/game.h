@@ -18,6 +18,7 @@
 #include "render.h"
 #include "sound.h"
 #include "sprite.h"
+#include "state_manager.h"
 #include "texture.h"
 #include "weapon.h"
 
@@ -42,6 +43,7 @@ typedef struct game_aux {
     WeaponClass_t *weapon;
     SoundClass_t *sound;
     HUDClass_t *hud;
+    StateManagerClass_t *state_manager;
 
     /* --------------- */
     sfVideoMode mode;
@@ -50,6 +52,7 @@ typedef struct game_aux {
     int screenHeight;
     sfClock *clock;
     float deltaTime;
+    int game_components_initialized;
     /* class methods */
     int (*init_game_components)(GameClass_t *game);
     void (*handle_events)(GameClass_t *game);
@@ -81,5 +84,6 @@ extern const class_t *Sprite;
 extern const class_t *Weapon;
 extern const class_t *Sound;
 extern const class_t *HUD;
+extern const class_t *StateManager;
 
 #endif
